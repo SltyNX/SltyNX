@@ -123,7 +123,7 @@ def build_current_project() -> str:
   <rect x="24" y="136" width="520" height="28" rx="4" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
   <text x="36" y="154" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">stage: active development</text>
   <text x="230" y="154" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">|</text>
-  <text x="246" y="154" class="mono" font-size="11.5" fill="{C.TEXT_PRIMARY}">github.com/SltyNX/Gnosis-Keyboard-Data &#8594;</text>
+  <text x="246" y="154" class="mono" font-size="11.5" fill="{C.TEXT_PRIMARY}">repo: {escape(C.PROJECT_REPO_NAME)}</text>
 
   <!-- Vertical Divider -->
   <line x1="568" y1="34" x2="568" y2="184" stroke="{C.BORDER}" stroke-width="1"/>

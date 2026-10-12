@@ -55,14 +55,12 @@
 ## Current Projects
 
 <div align="center">
-  <a href="https://github.com/SltyNX/Gnosis-Keyboard-Data">
-    <img src="./assets/current-project.svg" width="100%" alt="Current Project: Gnosis Keyboard — In Progress" />
-  </a>
+  <img src="./assets/current-project.svg" width="100%" alt="Current Project: Gnosis Keyboard — In Progress" />
 </div>
 
-- **Project:** [Gnosis Keyboard](https://github.com/SltyNX/Gnosis-Keyboard-Data) (`In Progress`)
+- **Project:** Gnosis Keyboard (`In Progress`)
 - **Description:** A custom Android keyboard focused on control, customization, and a better typing experience.
-- **Repository:** [`SltyNX/Gnosis-Keyboard-Data`](https://github.com/SltyNX/Gnosis-Keyboard-Data)
+- **Repository:** `private repo currently`
 
 ---
 

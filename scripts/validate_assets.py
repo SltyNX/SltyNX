@@ -124,7 +124,7 @@ def validate_readme(errors: list[str]) -> None:
     required_snippets = [
         "https://t.me/SltyNX_X",
         "@SltyNX_X",
-        "https://github.com/SltyNX/Gnosis-Keyboard-Data",
+        "private repo currently",
         "Sleeping Core",
         "Beginner \u2014 Learning in Progress",
         "don't give up on me bro, I'm trying to understand it for real.",
