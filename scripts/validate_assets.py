@@ -37,6 +37,17 @@ REQUIRED_ASSETS = [
     "knowledge-panel.svg",
     "funny-quote.svg",
     "footer.svg",
+    "mobile/hero.svg",
+    "mobile/dotmatrix-name.svg",
+    "mobile/profile-intro.svg",
+    "mobile/current-project.svg",
+    "mobile/skills-learning.svg",
+    "mobile/terminal-session.svg",
+    "mobile/ai-assistance.svg",
+    "mobile/error-repair.svg",
+    "mobile/knowledge-panel.svg",
+    "mobile/funny-quote.svg",
+    "mobile/footer.svg",
 ]
 
 REQUIRED_SOURCES = [

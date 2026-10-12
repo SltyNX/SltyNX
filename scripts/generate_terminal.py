@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """
 Generates the profile content, terminal storytelling, error-repair construction truck,
-knowledge base, and funny quote SVGs — all optimized with a 640px responsive viewBox
-and high-legibility typography (14px-24px) for crystal-clear mobile and desktop views:
-- assets/profile-intro.svg
+knowledge base, and funny quote SVGs:
 - assets/current-project.svg
 - assets/skills-learning.svg
 - assets/terminal-session.svg
@@ -21,24 +19,20 @@ import config as C
 
 def build_profile_intro() -> str:
     """
-    Builds assets/profile-intro.svg (640x254) — Animated Terminal for Profile Introduction:
-    Types out at large 15.5px-16.5px monospace:
+    Builds assets/profile-intro.svg (880x190) — Animated Terminal for Profile Introduction:
+    Types out:
       $ cat profile_intro.txt
-      > Just a guy who sleeps a lot, codes a little,
-        and dreams of building something cool.
-      > Currently a noob developer. Learning as I go,
-        breaking things occasionally, and trying to
-        understand how everything works.
+      > Just a guy who sleeps a lot, codes a little, and dreams of building something cool.
+      > Currently a noob developer. Learning as I go, breaking things occasionally,
+        and trying to understand how everything works.
     """
-    w, h = 640, 254
+    w, h = 880, 190
 
     intro_lines = [
-        ("cmd", "$ cat profile_intro.txt", 68, 3, 12),
-        ("pri", "> Just a guy who sleeps a lot, codes a little,", 104, 15, 30),
-        ("pri", "  and dreams of building something cool.", 130, 30, 44),
-        ("sec", "> Currently a noob developer. Learning as I go,", 166, 48, 63),
-        ("sec", "  breaking things occasionally, and trying to", 192, 63, 77),
-        ("sec", "  understand how everything works.", 218, 77, 88),
+        ("cmd", "$ cat profile_intro.txt", 64, 4, 14),
+        ("pri", "> Just a guy who sleeps a lot, codes a little, and dreams of building something cool.", 98, 18, 42),
+        ("sec", "> Currently a noob developer. Learning as I go, breaking things occasionally,", 130, 46, 68),
+        ("sec", "  and trying to understand how everything works.", 154, 68, 82),
     ]
 
     clips: list[str] = []
@@ -47,21 +41,19 @@ def build_profile_intro() -> str:
 
     for idx, (kind, txt, y, t0, t1) in enumerate(intro_lines):
         col = C.TEXT_PRIMARY if kind in ("cmd", "pri") else C.TEXT_SECONDARY
-        fsize = "16.5" if kind == "cmd" else "15.5"
-        fweight = ' font-weight="700"' if kind == "cmd" else ""
         clips.append(
             f'<clipPath id="piClip{idx}">'
-            f'<rect x="20" y="{y - 20}" width="600" height="28" class="piline{idx}"/>'
+            f'<rect x="24" y="{y - 18}" width="832" height="26" class="piline{idx}"/>'
             f'</clipPath>'
         )
         texts.append(
-            f'<text x="24" y="{y}" clip-path="url(#piClip{idx})" class="mono" font-size="{fsize}"{fweight} fill="{col}" xml:space="preserve">{escape(txt)}</text>'
+            f'<text x="28" y="{y}" clip-path="url(#piClip{idx})" class="mono" font-size="13" fill="{col}" xml:space="preserve">{escape(txt)}</text>'
         )
         css_rules.append(
-            f".piline{idx} {{ animation: piType{idx} 12s steps(45, end) infinite; }}\n"
+            f".piline{idx} {{ animation: piType{idx} 12s steps(55, end) infinite; }}\n"
             f"    @keyframes piType{idx} {{\n"
             f"      0%, {t0}% {{ width: 0px; }}\n"
-            f"      {t1}%, 94% {{ width: 600px; }}\n"
+            f"      {t1}%, 94% {{ width: 832px; }}\n"
             f"      98%, 100% {{ width: 0px; }}\n"
             f"    }}"
         )
@@ -78,90 +70,90 @@ def build_profile_intro() -> str:
     .pi-cur {{ animation: piBlink 1s steps(2, start) infinite; }}
     @keyframes piBlink {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
     @media (prefers-reduced-motion: reduce) {{
-      .piline0, .piline1, .piline2, .piline3, .piline4, .piline5 {{ animation: none !important; width: 600px !important; }}
+      .piline0, .piline1, .piline2, .piline3 {{ animation: none !important; width: 832px !important; }}
       .pi-cur {{ animation: none !important; opacity: 1 !important; }}
     }}
   </style>
 
   <!-- Outer Terminal Card Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Top Terminal Header Strip -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="22" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="38" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="54" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <text x="74" y="24" class="mono" font-size="13.5" fill="{C.TEXT_SECONDARY}">sltynx@sleeping-core: ~/profile</text>
-  <text x="{w - 20}" y="24" text-anchor="end" class="mono" font-size="13" fill="{C.TEXT_MUTED}">bio: Sleeping Core</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@sleeping-core: ~/profile (cat profile_intro.txt)</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">bio: Sleeping Core</text>
 
   <!-- Animated Terminal Typing Lines -->
   {"".join(texts)}
 
   <!-- Bottom Prompt & Blinking Cursor -->
-  <text x="24" y="242" class="mono" font-size="15.5" fill="{C.TEXT_MUTED}">$ </text>
-  <rect x="44" y="228" width="9" height="16" fill="{C.TEXT_PRIMARY}" class="pi-cur"/>
+  <text x="28" y="178" class="mono" font-size="13" fill="{C.TEXT_MUTED}">$ </text>
+  <rect x="44" y="166" width="8" height="14" fill="{C.TEXT_PRIMARY}" class="pi-cur"/>
 </svg>
 '''
 
 
 def build_current_project() -> str:
     """
-    Builds assets/current-project.svg (640x316) — Section 9:
-    Stacked mobile-friendly card with large 24px title, 16px description,
-    status bar, and full-scale pixel-art Gnosis Keyboard illustration below.
+    Builds assets/current-project.svg (880x185) — Section 9:
+    Gnosis Keyboard (In Progress), description, repository path,
+    original pixel-art Android keyboard illustration, and honest non-percentage status indicator.
     """
-    w, h = 640, 316
+    w, h = 880, 185
 
+    # Build a small pixel-art keyboard on the right side (x=590..844, y=42..152)
     keys_svg: list[str] = []
     row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
     row3 = ["Z", "X", "C", "V", "B", "N", "M"]
 
+    # Highlight specific keys ("G", "N", "O", "S", "I") with subtle sequential key-press animation
     highlight_keys = {"G": "0.2s", "N": "0.9s", "O": "1.6s", "S": "2.3s", "I": "3.0s"}
 
-    # Centered keyboard frame at x=140..500 (width=360), y=194..302 (height=108)
-    kb_x = 156
-    kb_y = 204
     for idx, k in enumerate(row1):
-        kx = kb_x + idx * 33
-        ky = kb_y
+        kx = 602 + idx * 23
+        ky = 58
         cls = ' class="key-press"' if k in highlight_keys else ""
         st = f' style="animation-delay:{highlight_keys[k]}"' if k in highlight_keys else ""
         keys_svg.append(
-            f'<g{cls}{st}><rect x="{kx}" y="{ky}" width="29" height="21" rx="3.5" fill="{C.BG_ELEVATED}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-            f'<text x="{kx + 14.5}" y="{ky + 15}" text-anchor="middle" class="mono" font-size="11.5" font-weight="600" fill="{C.TEXT_SECONDARY}">{k}</text></g>'
+            f'<g{cls}{st}><rect x="{kx}" y="{ky}" width="20" height="20" rx="3" fill="{C.BG_ELEVATED}" stroke="{C.BORDER}" stroke-width="1"/>'
+            f'<text x="{kx + 10}" y="{ky + 14}" text-anchor="middle" class="mono" font-size="9.5" fill="{C.TEXT_SECONDARY}">{k}</text></g>'
         )
     for idx, k in enumerate(row2):
-        kx = kb_x + 16 + idx * 33
-        ky = kb_y + 25
+        kx = 613 + idx * 23
+        ky = 82
         cls = ' class="key-press"' if k in highlight_keys else ""
         st = f' style="animation-delay:{highlight_keys[k]}"' if k in highlight_keys else ""
         keys_svg.append(
-            f'<g{cls}{st}><rect x="{kx}" y="{ky}" width="29" height="21" rx="3.5" fill="{C.BG_ELEVATED}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-            f'<text x="{kx + 14.5}" y="{ky + 15}" text-anchor="middle" class="mono" font-size="11.5" font-weight="600" fill="{C.TEXT_SECONDARY}">{k}</text></g>'
+            f'<g{cls}{st}><rect x="{kx}" y="{ky}" width="20" height="20" rx="3" fill="{C.BG_ELEVATED}" stroke="{C.BORDER}" stroke-width="1"/>'
+            f'<text x="{kx + 10}" y="{ky + 14}" text-anchor="middle" class="mono" font-size="9.5" fill="{C.TEXT_SECONDARY}">{k}</text></g>'
         )
     for idx, k in enumerate(row3):
-        kx = kb_x + 49 + idx * 33
-        ky = kb_y + 50
+        kx = 636 + idx * 23
+        ky = 106
         cls = ' class="key-press"' if k in highlight_keys else ""
         st = f' style="animation-delay:{highlight_keys[k]}"' if k in highlight_keys else ""
         keys_svg.append(
-            f'<g{cls}{st}><rect x="{kx}" y="{ky}" width="29" height="21" rx="3.5" fill="{C.BG_ELEVATED}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-            f'<text x="{kx + 14.5}" y="{ky + 15}" text-anchor="middle" class="mono" font-size="11.5" font-weight="600" fill="{C.TEXT_SECONDARY}">{k}</text></g>'
+            f'<g{cls}{st}><rect x="{kx}" y="{ky}" width="20" height="20" rx="3" fill="{C.BG_ELEVATED}" stroke="{C.BORDER}" stroke-width="1"/>'
+            f'<text x="{kx + 10}" y="{ky + 14}" text-anchor="middle" class="mono" font-size="9.5" fill="{C.TEXT_SECONDARY}">{k}</text></g>'
         )
+    # Modifier keys & Spacebar
     keys_svg.append(
-        f'<rect x="{kb_x}" y="{kb_y + 50}" width="44" height="21" rx="3.5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-        f'<text x="{kb_x + 22}" y="{kb_y + 64}" text-anchor="middle" class="mono" font-size="10" fill="{C.TEXT_MUTED}">SHIFT</text>'
-        f'<rect x="{kb_x + 282}" y="{kb_y + 50}" width="44" height="21" rx="3.5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-        f'<text x="{kb_x + 304}" y="{kb_y + 64}" text-anchor="middle" class="mono" font-size="10" fill="{C.TEXT_MUTED}">DEL</text>'
-        f'<rect x="{kb_x}" y="{kb_y + 75}" width="54" height="20" rx="3.5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-        f'<text x="{kb_x + 27}" y="{kb_y + 89}" text-anchor="middle" class="mono" font-size="10" fill="{C.TEXT_MUTED}">?123</text>'
-        f'<rect x="{kb_x + 60}" y="{kb_y + 75}" width="196" height="20" rx="3.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_MUTED}" stroke-width="1.1"/>'
-        f'<text x="{kb_x + 158}" y="{kb_y + 89}" text-anchor="middle" class="mono" font-size="10.5" font-weight="700" fill="{C.TEXT_PRIMARY}" letter-spacing="2.5">GNOSIS</text>'
-        f'<rect x="{kb_x + 262}" y="{kb_y + 75}" width="64" height="20" rx="3.5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>'
-        f'<text x="{kb_x + 294}" y="{kb_y + 89}" text-anchor="middle" class="mono" font-size="10" fill="{C.TEXT_SECONDARY}">ENTER</text>'
+        f'<rect x="602" y="106" width="30" height="20" rx="3" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+        f'<text x="617" y="119" text-anchor="middle" class="mono" font-size="8.5" fill="{C.TEXT_MUTED}">SHIFT</text>'
+        f'<rect x="800" y="106" width="30" height="20" rx="3" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+        f'<text x="815" y="119" text-anchor="middle" class="mono" font-size="8.5" fill="{C.TEXT_MUTED}">DEL</text>'
+        f'<rect x="602" y="130" width="38" height="18" rx="3" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+        f'<text x="621" y="142" text-anchor="middle" class="mono" font-size="8" fill="{C.TEXT_MUTED}">?123</text>'
+        f'<rect x="644" y="130" width="136" height="18" rx="3" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_MUTED}" stroke-width="1"/>'
+        f'<text x="712" y="142" text-anchor="middle" class="mono" font-size="8.5" fill="{C.TEXT_PRIMARY}" letter-spacing="2">GNOSIS</text>'
+        f'<rect x="784" y="130" width="46" height="18" rx="3" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+        f'<text x="807" y="142" text-anchor="middle" class="mono" font-size="8" fill="{C.TEXT_SECONDARY}">ENTER</text>'
     )
 
     return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Current Project: Gnosis Keyboard (In Progress)">
@@ -188,33 +180,37 @@ def build_current_project() -> str:
 
   <!-- Card Background & Border -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Section Header Strip -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="20" y="25" class="mono" font-size="14.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// Current Projects</text>
-  <text x="{w - 20}" y="25" text-anchor="end" class="mono" font-size="13.5" fill="{C.TEXT_MUTED}">repo: {escape(C.PROJECT_REPO_NAME)}</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="24" y="22" class="mono" font-size="12" font-weight="700" fill="{C.TEXT_PRIMARY}">// Current Projects</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">repo: {escape(C.PROJECT_REPO_NAME)}</text>
 
+  <!-- Left Content Area -->
   <!-- Project Title & Status Badge -->
-  <text x="22" y="74" class="sans" font-size="24" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.PROJECT_NAME)}</text>
+  <text x="24" y="68" class="sans" font-size="20" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.PROJECT_NAME)}</text>
 
-  <rect x="226" y="53" width="128" height="28" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>
-  <circle cx="242" cy="67" r="4" fill="{C.TEXT_PRIMARY}" class="pulse-dot"/>
-  <text x="255" y="72" class="mono" font-size="13.5" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(C.PROJECT_STATUS)}</text>
+  <rect x="198" y="50" width="106" height="24" rx="4" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
+  <circle cx="212" cy="62" r="3.5" fill="{C.TEXT_PRIMARY}" class="pulse-dot"/>
+  <text x="224" y="66" class="mono" font-size="11" fill="{C.TEXT_PRIMARY}">{escape(C.PROJECT_STATUS)}</text>
 
-  <!-- Description -->
-  <text x="22" y="106" class="sans" font-size="16" fill="{C.TEXT_SECONDARY}">A custom Android keyboard focused on control, customization,</text>
-  <text x="22" y="129" class="sans" font-size="16" fill="{C.TEXT_SECONDARY}">and a better typing experience.</text>
+  <!-- Description (2 clean lines within left column) -->
+  <text x="24" y="98" class="sans" font-size="13.5" fill="{C.TEXT_SECONDARY}">A custom Android keyboard focused on control, customization,</text>
+  <text x="24" y="118" class="sans" font-size="13.5" fill="{C.TEXT_SECONDARY}">and a better typing experience.</text>
 
   <!-- Non-percentage Honest Development Status Bar -->
-  <rect x="20" y="144" width="600" height="34" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>
-  <text x="34" y="166" class="mono" font-size="14" fill="{C.TEXT_SECONDARY}">stage: active development</text>
-  <text x="272" y="166" class="mono" font-size="14" fill="{C.TEXT_MUTED}">|</text>
-  <text x="292" y="166" class="mono" font-size="14" font-weight="600" fill="{C.TEXT_PRIMARY}">repo: {escape(C.PROJECT_REPO_NAME)}</text>
+  <rect x="24" y="136" width="520" height="28" rx="4" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="36" y="154" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">stage: active development</text>
+  <text x="230" y="154" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">|</text>
+  <text x="246" y="154" class="mono" font-size="11.5" fill="{C.TEXT_PRIMARY}">repo: {escape(C.PROJECT_REPO_NAME)}</text>
 
-  <!-- Centered Pixel-Art Keyboard Illustration -->
-  <rect x="142" y="192" width="356" height="112" rx="7" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <!-- Vertical Divider -->
+  <line x1="568" y1="34" x2="568" y2="184" stroke="{C.BORDER}" stroke-width="1"/>
+
+  <!-- Right Pixel-Art Keyboard Illustration -->
+  <rect x="590" y="46" width="252" height="114" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
   {"".join(keys_svg)}
 </svg>
 '''
@@ -222,21 +218,22 @@ def build_current_project() -> str:
 
 def build_skills_learning() -> str:
     """
-    Builds assets/skills-learning.svg (640x436) — Section 10:
+    Builds assets/skills-learning.svg (880x340) — Section 10:
     Communicates honestly that SltyNX is a beginner currently learning step by step.
-    Uses a spacious 2-column x 4-row grid (292px wide x 72px tall cards) inside a 640px
-    viewBox with 13px-16px fonts and per-card clipPaths for mobile & desktop clarity.
+    Uses a spacious 2-column x 4-row grid (408px wide cards) with per-card clipPaths
+    so text never overflows on desktop or mobile screens.
     """
-    w, h = 640, 436
+    w, h = 880, 340
     badges: list[str] = []
     clips: list[str] = []
 
-    col_w = 292
-    row_h = 72
+    # 4 rows x 2 columns of spacious outlined cards (408px wide each)
+    col_w = 408
+    row_h = 54
     gap_x = 16
-    gap_y = 12
-    start_x = 20
-    start_y = 92
+    gap_y = 10
+    start_x = 24
+    start_y = 84
 
     for idx, (title, desc, tag) in enumerate(C.LEARNING_ITEMS):
         r = idx // 2
@@ -245,17 +242,17 @@ def build_skills_learning() -> str:
         by = start_y + r * (row_h + gap_y)
         clips.append(
             f'<clipPath id="skCardClip{idx}">'
-            f'<rect x="2" y="2" width="{col_w - 4}" height="{row_h - 4}" rx="5"/>'
+            f'<rect x="2" y="2" width="{col_w - 4}" height="{row_h - 4}" rx="4"/>'
             f'</clipPath>'
         )
         badges.append(
             f'<g transform="translate({bx}, {by})">'
-            f'<rect x="0" y="0" width="{col_w}" height="{row_h}" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>'
+            f'<rect x="0" y="0" width="{col_w}" height="{row_h}" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
             f'<g clip-path="url(#skCardClip{idx})">'
-            f'<text x="14" y="27" class="mono" font-size="14" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(title)}</text>'
-            f'<rect x="{col_w - 86}" y="9" width="76" height="22" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1"/>'
-            f'<text x="{col_w - 48}" y="24" text-anchor="middle" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">{escape(tag)}</text>'
-            f'<text x="14" y="53" class="sans" font-size="13" fill="{C.TEXT_SECONDARY}">{escape(desc)}</text>'
+            f'<text x="14" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(title)}</text>'
+            f'<rect x="{col_w - 86}" y="7" width="74" height="19" rx="3" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+            f'<text x="{col_w - 49}" y="20" text-anchor="middle" class="mono" font-size="10" fill="{C.TEXT_SECONDARY}">{escape(tag)}</text>'
+            f'<text x="14" y="42" class="sans" font-size="12" fill="{C.TEXT_SECONDARY}">{escape(desc)}</text>'
             f'</g>'
             f'</g>'
         )
@@ -271,21 +268,22 @@ def build_skills_learning() -> str:
   </style>
 
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Top Header Strip -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="38" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="40" x2="{w - 1}" y2="40" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="20" y="26" class="mono" font-size="15" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.SKILLS_HEADING)}</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="34" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="36" x2="{w - 1}" y2="36" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="24" y="23" class="mono" font-size="13" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.SKILLS_HEADING)}</text>
 
   <!-- Beginner — Learning in Progress Badge -->
-  <rect x="346" y="7" width="276" height="26" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1.1"/>
-  <text x="484" y="25" text-anchor="middle" class="mono" font-size="13" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(C.SKILLS_LABEL)}</text>
+  <rect x="614" y="6" width="244" height="22" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="736" y="21" text-anchor="middle" class="mono" font-size="11" fill="{C.TEXT_PRIMARY}">{escape(C.SKILLS_LABEL)}</text>
 
   <!-- Honest Core Message -->
-  <text x="20" y="70" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_SECONDARY}">&#8220;{escape(C.SKILLS_MESSAGE)}&#8221;</text>
+  <text x="24" y="64" class="sans" font-size="13.5" fill="{C.TEXT_SECONDARY}">&#8220;{escape(C.SKILLS_MESSAGE)}&#8221;</text>
+  <text x="{w - 24}" y="64" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">// no fake proficiency meters</text>
 
-  <!-- 8 Outlined Learning Inventory Cards (2 cols x 4 rows) -->
+  <!-- 8 Spacious Outlined Learning Inventory Cards (2 cols x 4 rows) -->
   {"".join(badges)}
 </svg>
 '''
@@ -293,13 +291,18 @@ def build_skills_learning() -> str:
 
 def build_terminal_session() -> str:
     """
-    Builds assets/terminal-session.svg (640x420) — Section 11, Scenes A & B:
-    Stacked vertical layout for high mobile visibility:
-    Top (Scene A): Animated terminal typing at 16.5px monospace.
-    Bottom (Scene B): Sleepy mascot sitting in front of laptop with '...what now?' thought bubble.
+    Builds assets/terminal-session.svg (880x280) — Section 11, Scenes A & B:
+    Scene A (Left): Animated terminal typing:
+      $ start-project
+      > opening the editor...
+      > thinking of an idea...
+      > no ideas found.
+      > searching for motivation...
+    Scene B (Right): Sleepy mascot sitting in front of a laptop, pausing with '...what now?' thought bubble.
     """
-    w, h = 640, 420
+    w, h = 880, 280
 
+    # Build line-by-line / character-by-character clipPath reveal animations over a 12s cycle
     clips: list[str] = []
     texts: list[str] = []
 
@@ -311,175 +314,181 @@ def build_terminal_session() -> str:
         (63, 75),  # > searching for motivation...
     ]
 
-    for idx, ((kind, txt), (_t_start, _t_end)) in enumerate(zip(C.TERMINAL_SCENE_A_LINES, line_timings)):
-        y = 74 + idx * 30
+    for idx, ((kind, txt), (t_start, t_end)) in enumerate(zip(C.TERMINAL_SCENE_A_LINES, line_timings)):
+        y = 78 + idx * 34
         col = C.TEXT_PRIMARY if kind == "cmd" else (C.TERM_ERROR if kind == "err" else C.TEXT_SECONDARY)
-        fweight = ' font-weight="700"' if kind == "cmd" else ""
         clips.append(
             f'<clipPath id="tsClip{idx}">'
-            f'<rect x="20" y="{y - 20}" width="580" height="28" class="tline{idx}"/>'
+            f'<rect x="24" y="{y - 18}" width="460" height="26" class="tline{idx}"/>'
             f'</clipPath>'
         )
         texts.append(
-            f'<text x="26" y="{y}" clip-path="url(#tsClip{idx})" class="mono" font-size="16"{fweight} fill="{col}">{escape(txt)}</text>'
+            f'<text x="28" y="{y}" clip-path="url(#tsClip{idx})" class="mono" font-size="13.5" fill="{col}">{escape(txt)}</text>'
         )
 
     line_css: list[str] = []
     for idx, (t_start, t_end) in enumerate(line_timings):
         line_css.append(
-            f".tline{idx} {{ animation: typeL{idx} 12s steps(36, end) infinite; }}\n"
+            f".tline{idx} {{ animation: typeL{idx} 12s steps(28, end) infinite; }}\n"
             f"    @keyframes typeL{idx} {{\n"
-            f"      0%, {t_start}% {{ width: 0px; }}\n"
-            f"      {t_end}%, 92% {{ width: 580px; }}\n"
-            f"      96%, 100% {{ width: 0px; }}\n"
+            f"      0%, {t_start - 0.5:.1f}% {{ width: 0px; }}\n"
+            f"      {t_end:.1f}%, 92% {{ width: 460px; }}\n"
+            f"      97%, 100% {{ width: 0px; }}\n"
             f"    }}"
         )
 
-    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Terminal Session — Starting Work and Running Out of Ideas (Scenes A and B)">
-  <title>Terminal Session — Starting Work &amp; Running Out of Ideas (Scenes A &amp; B)</title>
+    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Animated Terminal Session — Scene A and Scene B: Running Out of Ideas">
+  <title>Terminal Session — A Developer Running Out of Ideas (Scenes A &amp; B)</title>
   <defs>
     {"".join(clips)}
   </defs>
   <style>
     .mono {{ font-family: {C.FONT_MONO}; }}
     .sans {{ font-family: {C.FONT_SANS}; }}
-    {chr(10).join(line_css)}
+    {"    ".join(line_css)}
+    .cur {{ animation: blink 1s steps(1) infinite; }}
+    @keyframes blink {{ 0%, 49% {{ opacity: 1; }} 50%, 100% {{ opacity: 0; }} }}
 
     .thought-bubble {{ animation: bubbleShow 12s ease-in-out infinite; }}
     @keyframes bubbleShow {{
-      0%, 54% {{ opacity: 0; transform: translateY(4px); }}
-      60%, 92% {{ opacity: 1; transform: translateY(0px); }}
+      0%, 52% {{ opacity: 0; transform: translateY(4px); }}
+      58%, 90% {{ opacity: 1; transform: translateY(0px); }}
       96%, 100% {{ opacity: 0; transform: translateY(4px); }}
     }}
 
-    .mascot-nod {{ animation: headNod 4s ease-in-out infinite; }}
-    @keyframes headNod {{
-      0%, 100% {{ transform: translateY(0px); }}
-      50% {{ transform: translateY(2.2px); }}
+    .mascot-nod {{ animation: mNod 6s ease-in-out infinite; transform-origin: 684px 175px; }}
+    @keyframes mNod {{
+      0%, 100% {{ transform: rotate(0deg); }}
+      50% {{ transform: rotate(-2deg); }}
     }}
 
-    .cur {{ animation: cBlink 1s steps(2, start) infinite; }}
-    @keyframes cBlink {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
-
     @media (prefers-reduced-motion: reduce) {{
-      .tline0, .tline1, .tline2, .tline3, .tline4 {{ animation: none !important; width: 580px !important; }}
-      .thought-bubble {{ animation: none !important; opacity: 1 !important; transform: none !important; }}
+      .tline0, .tline1, .tline2, .tline3, .tline4 {{ animation: none !important; width: 460px !important; }}
+      .thought-bubble {{ animation: none !important; opacity: 1 !important; }}
       .mascot-nod, .cur {{ animation: none !important; }}
     }}
   </style>
 
   <!-- Outer Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
-  <!-- Top Terminal Header -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="22" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="38" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="54" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <text x="74" y="24" class="mono" font-size="13.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/projects (scene 01 // running out of ideas)</text>
+  <!-- Top Terminal Bar -->
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/projects (scene 01 // running out of ideas)</text>
 
   <!-- =================================================================== -->
-  <!-- SCENE A (TOP): Terminal Typing Sequence                             -->
+  <!-- SCENE A (LEFT): Terminal Typing Sequence                            -->
   <!-- =================================================================== -->
   {"".join(texts)}
 
-  <!-- Blinking Terminal Cursor -->
-  <text x="26" y="220" class="mono" font-size="16" fill="{C.TEXT_MUTED}">$ </text>
-  <rect x="46" y="206" width="9" height="16" fill="{C.TEXT_PRIMARY}" class="cur"/>
+  <!-- Blinking Terminal Cursor on bottom prompt line -->
+  <text x="28" y="246" class="mono" font-size="13.5" fill="{C.TEXT_MUTED}">$ </text>
+  <rect x="44" y="233" width="8" height="15" fill="{C.TEXT_PRIMARY}" class="cur"/>
 
-  <!-- Horizontal Divider -->
-  <line x1="20" y1="234" x2="620" y2="234" stroke="{C.BORDER}" stroke-width="1"/>
+  <!-- Vertical Divider -->
+  <line x1="516" y1="34" x2="516" y2="279" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- =================================================================== -->
-  <!-- SCENE B (BOTTOM): Sleepy Mascot at Laptop + "...what now?" Bubble   -->
+  <!-- SCENE B (RIGHT): Sleepy Mascot at Laptop + "...what now?" Bubble    -->
   <!-- =================================================================== -->
-  <rect x="20" y="246" width="600" height="156" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="536" y="48" width="324" height="214" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Desk Surface -->
-  <line x1="40" y1="368" x2="596" y2="368" stroke="{C.BORDER}" stroke-width="1.5"/>
+  <line x1="548" y1="224" x2="848" y2="224" stroke="{C.BORDER}" stroke-width="1.5"/>
 
   <!-- Coffee Mug on Desk -->
-  <rect x="148" y="346" width="20" height="22" rx="2.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_MUTED}" stroke-width="1.3"/>
-  <path d="M 168 351 C 174 351, 174 363, 168 363" fill="none" stroke="{C.TEXT_MUTED}" stroke-width="1.3"/>
+  <rect x="572" y="206" width="16" height="18" rx="2" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_MUTED}" stroke-width="1.2"/>
+  <path d="M 588 210 C 593 210, 593 220, 588 220" fill="none" stroke="{C.TEXT_MUTED}" stroke-width="1.2"/>
 
   <!-- Sleepy Mascot Sitting Behind Laptop -->
   <g class="mascot-nod">
-    <rect x="278" y="326" width="48" height="42" rx="8" fill="#222222" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>
-    <circle cx="302" cy="296" r="27" fill="#E5E5E5" stroke="{C.BORDER}" stroke-width="1.2"/>
-    <path d="M 275 296 C 275 262, 329 262, 329 296 C 323 282, 312 286, 304 292 L 298 282 L 290 292 L 282 284 Z" fill="#1A1A1A" stroke="{C.TEXT_MUTED}" stroke-width="1.1"/>
-    <line x1="290" y1="300" x2="298" y2="300" stroke="{C.BG_PRIMARY}" stroke-width="2.4" stroke-linecap="round"/>
-    <line x1="306" y1="300" x2="314" y2="300" stroke="{C.BG_PRIMARY}" stroke-width="2.4" stroke-linecap="round"/>
-    <path d="M 322 290 Q 325 296 322 298 Q 319 296 322 290 Z" fill="{C.TEXT_SECONDARY}"/>
+    <!-- Torso -->
+    <rect x="658" y="182" width="48" height="42" rx="8" fill="#222222" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>
+    <!-- Chibi Head & Dark Bangs -->
+    <circle cx="682" cy="152" r="26" fill="#E5E5E5" stroke="{C.BORDER}" stroke-width="1.2"/>
+    <path d="M 655 152 C 655 118, 709 118, 709 152 C 703 138, 692 142, 684 148 L 678 138 L 670 148 L 662 140 Z" fill="#1A1A1A" stroke="{C.TEXT_MUTED}" stroke-width="1.1"/>
+    <!-- Sleepy / Blank Expression Eyes Looking at Screen -->
+    <line x1="670" y1="156" x2="678" y2="156" stroke="{C.BG_PRIMARY}" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="686" y1="156" x2="694" y2="156" stroke="{C.BG_PRIMARY}" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- Small sweat drop -->
+    <path d="M 702 146 Q 705 152 702 154 Q 699 152 702 146 Z" fill="{C.TEXT_SECONDARY}"/>
   </g>
 
-  <!-- Laptop on Desk -->
-  <polygon points="242,330 296,330 304,366 250,366" fill="#141414" stroke="{C.TEXT_SECONDARY}" stroke-width="1.3"/>
-  <polygon points="273,344 269,351 277,351" fill="{C.TEXT_PRIMARY}"/>
-  <rect x="246" y="364" width="76" height="4" rx="1.5" fill="{C.TEXT_SECONDARY}"/>
+  <!-- Laptop on Desk in Front of Mascot -->
+  <polygon points="622,186 676,186 684,222 630,222" fill="#141414" stroke="{C.TEXT_SECONDARY}" stroke-width="1.3"/>
+  <!-- Glowing Apple/Logo dot on laptop lid -->
+  <polygon points="653,200 649,207 657,207" fill="{C.TEXT_PRIMARY}"/>
+  <!-- Laptop Base -->
+  <rect x="626" y="220" width="76" height="4" rx="1.5" fill="{C.TEXT_SECONDARY}"/>
 
   <!-- Thought Bubble: "...what now?" -->
   <g class="thought-bubble">
-    <circle cx="338" cy="278" r="3.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.1"/>
-    <circle cx="352" cy="268" r="5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.1"/>
-    <rect x="364" y="252" width="166" height="40" rx="6" fill="{C.BG_PRIMARY}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.3"/>
-    <text x="447" y="277" text-anchor="middle" class="mono" font-size="15.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.MASCOT_THOUGHT_BUBBLE)}</text>
+    <circle cx="716" cy="122" r="3" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1"/>
+    <circle cx="726" cy="110" r="4.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1"/>
+    <rect x="724" y="66" width="122" height="34" rx="6" fill="{C.BG_PRIMARY}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>
+    <text x="785" y="88" text-anchor="middle" class="mono" font-size="12.5" fill="{C.TEXT_PRIMARY}">{escape(C.MASCOT_THOUGHT_BUBBLE)}</text>
   </g>
 
-  <text x="320" y="391" text-anchor="middle" class="mono" font-size="13" fill="{C.TEXT_MUTED}">status: staring at blank editor</text>
+  <text x="698" y="248" text-anchor="middle" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">status: staring at blank editor</text>
 </svg>
 '''
 
 
 def build_ai_assistance() -> str:
     """
-    Builds assets/ai-assistance.svg (640x436) — Section 11, Scenes C & D:
-    Stacked mobile-first layout:
-    Top (Scene C): 3 wide AI Reference cards (192px each) + notification popups.
-    Middle (Scene D): Terminal output (> hint received, > trying to understand..., > implementing solution...).
-    Bottom (Scene D): Focused mascot at laptop reading docs.
+    Builds assets/ai-assistance.svg (880x285) — Section 11, Scenes C & D:
+    Scene C: Asking AI for help (Claude — Sonnet, Gemini, ChatGPT) + sequential dot-matrix
+             notification popups ('asking for a hint...', 'idea detected?', 'trying again...').
+    Scene D: Terminal response ('> hint received', '> trying to understand...', '> implementing solution...')
+             with mascot looking focused.
     """
-    w, h = 640, 436
+    w, h = 880, 285
 
+    # Three AI service cards across top-left (x=24..510, y=50..112)
     service_cards: list[str] = []
     ai_clips: list[str] = []
-    popups_svg: list[str] = []
-
     for idx, (name, sub) in enumerate(C.AI_SERVICES):
-        sx = 20 + idx * 204
+        sx = 24 + idx * 164
         sy = 50
         ai_clips.append(
-            f'<clipPath id="aiCardClip{idx}"><rect x="{sx + 2}" y="{sy + 2}" width="188" height="54" rx="5"/></clipPath>'
-            f'<clipPath id="aiPopClip{idx}"><rect x="{sx + 2}" y="118" width="188" height="28" rx="4"/></clipPath>'
+            f'<clipPath id="aiCardClip{idx}"><rect x="{sx + 2}" y="{sy + 2}" width="148" height="48" rx="4"/></clipPath>'
+            f'<clipPath id="aiPopClip{idx}"><rect x="{sx + 2}" y="116" width="148" height="24" rx="3"/></clipPath>'
         )
+        # Distinct neutral geometric symbol per service (asterisk, 4-point star, hex node)
         if idx == 0:
-            icon = f'<path d="M {sx+22} {sy+20} V {sy+38} M {sx+13} {sy+29} H {sx+31} M {sx+15} {sy+22} L {sx+29} {sy+36} M {sx+29} {sy+22} L {sx+15} {sy+36}" stroke="{C.TEXT_PRIMARY}" stroke-width="1.7"/>'
+            icon = f'<path d="M {sx+19} {sy+18} V {sy+34} M {sx+11} {sy+26} H {sx+27} M {sx+13} {sy+20} L {sx+25} {sy+32} M {sx+25} {sy+20} L {sx+13} {sy+32}" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5"/>'
         elif idx == 1:
-            icon = f'<polygon points="{sx+22},{sy+18} {sx+25.5},{sy+26} {sx+33.5},{sy+29} {sx+25.5},{sy+32} {sx+22},{sy+40} {sx+18.5},{sy+32} {sx+10.5},{sy+29} {sx+18.5},{sy+26}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5"/>'
+            icon = f'<polygon points="{sx+19},{sy+16} {sx+22},{sy+23} {sx+29},{sy+26} {sx+22},{sy+29} {sx+19},{sy+36} {sx+16},{sy+29} {sx+9},{sy+26} {sx+16},{sy+23}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4"/>'
         else:
-            icon = f'<polygon points="{sx+22},{sy+19} {sx+31},{sy+24} {sx+31},{sy+34} {sx+22},{sy+39} {sx+13},{sy+34} {sx+13},{sy+24}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5"/>'
+            icon = f'<polygon points="{sx+19},{sy+17} {sx+27},{sy+21.5} {sx+27},{sy+30.5} {sx+19},{sy+35} {sx+11},{sy+30.5} {sx+11},{sy+21.5}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4"/>'
 
         service_cards.append(
             f'<g class="ai-node n{idx}">'
-            f'<rect x="{sx}" y="{sy}" width="192" height="58" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>'
+            f'<rect x="{sx}" y="{sy}" width="152" height="52" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
             f'<g clip-path="url(#aiCardClip{idx})">'
             f'{icon}'
-            f'<text x="{sx + 40}" y="{sy + 25}" class="sans" font-size="14.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(name)}</text>'
-            f'<text x="{sx + 40}" y="{sy + 44}" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">{escape(sub)}</text>'
+            f'<text x="{sx + 34}" y="{sy + 23}" class="sans" font-size="11.5" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(name)}</text>'
+            f'<text x="{sx + 34}" y="{sy + 39}" class="mono" font-size="9" fill="{C.TEXT_MUTED}">{escape(sub)}</text>'
             f'</g>'
             f'</g>'
         )
 
+    # Sequential dot-matrix notification popups (y=118..148)
+    popups_svg: list[str] = []
     for idx, ptext in enumerate(C.AI_POPUPS):
-        px = 20 + idx * 204
-        py = 116
+        px = 24 + idx * 164
+        py = 114
         popups_svg.append(
             f'<g class="popup pop{idx}">'
-            f'<rect x="{px}" y="{py}" width="192" height="32" rx="5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.1" stroke-dasharray="3 2"/>'
+            f'<rect x="{px}" y="{py}" width="152" height="28" rx="4" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1" stroke-dasharray="3 2"/>'
             f'<g clip-path="url(#aiPopClip{idx})">'
-            f'<rect x="{px + 12}" y="{py + 13}" width="6" height="6" fill="{C.TEXT_PRIMARY}"/>'
-            f'<text x="{px + 24}" y="{py + 21}" class="mono" font-size="12.5" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(ptext)}</text>'
+            f'<rect x="{px + 9}" y="{py + 11}" width="5" height="5" fill="{C.TEXT_PRIMARY}"/>'
+            f'<text x="{px + 19}" y="{py + 18}" class="mono" font-size="9.5" fill="{C.TEXT_PRIMARY}">{escape(ptext)}</text>'
             f'</g>'
             f'</g>'
         )
@@ -499,17 +508,17 @@ def build_ai_assistance() -> str:
     @keyframes popSeq0 {{
       0%, 5% {{ opacity: 0; transform: translateY(-4px); }}
       10%, 34% {{ opacity: 1; transform: translateY(0px); }}
-      40%, 100% {{ opacity: 0.28; transform: translateY(0px); }}
+      40%, 100% {{ opacity: 0.25; transform: translateY(0px); }}
     }}
     @keyframes popSeq1 {{
       0%, 22% {{ opacity: 0; transform: translateY(-4px); }}
       28%, 54% {{ opacity: 1; transform: translateY(0px); }}
-      60%, 100% {{ opacity: 0.28; transform: translateY(0px); }}
+      60%, 100% {{ opacity: 0.25; transform: translateY(0px); }}
     }}
     @keyframes popSeq2 {{
       0%, 40% {{ opacity: 0; transform: translateY(-4px); }}
       46%, 76% {{ opacity: 1; transform: translateY(0px); }}
-      82%, 100% {{ opacity: 0.28; transform: translateY(0px); }}
+      82%, 100% {{ opacity: 0.25; transform: translateY(0px); }}
     }}
 
     .resp0 {{ animation: rLine0 12s steps(24, end) infinite; }}
@@ -528,80 +537,103 @@ def build_ai_assistance() -> str:
 
   <!-- Outer Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Top Terminal Header -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="22" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="38" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="54" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <text x="74" y="24" class="mono" font-size="13.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/projects (scene 02 // asking AI for a hint)</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/projects (scene 02 // asking AI for a hint)</text>
 
-  <!-- SCENE C (TOP): Three AI Reference Nodes & Popups -->
+  <!-- =================================================================== -->
+  <!-- SCENE C (LEFT TOP): Three AI Reference Nodes & Dot-Matrix Popups    -->
+  <!-- =================================================================== -->
   {"".join(service_cards)}
   {"".join(popups_svg)}
 
-  <!-- SCENE D (MIDDLE): Terminal Assistance Output -->
-  <rect x="20" y="160" width="600" height="106" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
-  <text x="36" y="189" class="mono resp0" font-size="16" font-weight="600" fill="{C.TERM_SUCCESS}">&gt; hint received</text>
-  <text x="36" y="218" class="mono resp1" font-size="16" fill="{C.TEXT_PRIMARY}">&gt; trying to understand...</text>
-  <text x="36" y="247" class="mono resp2" font-size="16" fill="{C.TEXT_SECONDARY}">&gt; implementing solution...</text>
+  <!-- =================================================================== -->
+  <!-- SCENE D (LEFT BOTTOM): Terminal Assistance Output                   -->
+  <!-- =================================================================== -->
+  <rect x="24" y="154" width="480" height="110" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="38" y="182" class="mono resp0" font-size="13.5" fill="{C.TERM_SUCCESS}">&gt; hint received</text>
+  <text x="38" y="210" class="mono resp1" font-size="13.5" fill="{C.TEXT_PRIMARY}">&gt; trying to understand...</text>
+  <text x="38" y="238" class="mono resp2" font-size="13.5" fill="{C.TEXT_SECONDARY}">&gt; implementing solution...</text>
 
-  <!-- SCENE D (BOTTOM): Mascot Focusing & Typing at Laptop -->
-  <rect x="20" y="278" width="600" height="140" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
-  <line x1="40" y1="386" x2="600" y2="386" stroke="{C.BORDER}" stroke-width="1.5"/>
+  <!-- Vertical Divider -->
+  <line x1="524" y1="34" x2="524" y2="284" stroke="{C.BORDER}" stroke-width="1"/>
 
-  <g transform="translate(230, 326)">
-    <rect x="-24" y="22" width="48" height="38" rx="8" fill="#242424" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>
-    <circle cx="0" cy="-6" r="25" fill="#E5E5E5" stroke="{C.BORDER}" stroke-width="1.2"/>
-    <path d="M -25 -6 C -25 -38, 25 -38, 25 -6 C 19 -20, 9 -16, 2 -10 L -4 -20 L -12 -10 L -19 -18 Z" fill="#1A1A1A" stroke="{C.TEXT_MUTED}" stroke-width="1.1"/>
-    <line x1="-12" y1="-6" x2="-4" y2="-4" stroke="{C.BG_PRIMARY}" stroke-width="2" stroke-linecap="round"/>
-    <line x1="4" y1="-4" x2="12" y2="-6" stroke="{C.BG_PRIMARY}" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="-8" cy="-1" r="2.2" fill="{C.BG_PRIMARY}"/>
-    <circle cx="8" cy="-1" r="2.2" fill="{C.BG_PRIMARY}"/>
-    <g class="focus-badge" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5" stroke-linecap="round">
-      <line x1="-36" y1="-20" x2="-30" y2="-16"/>
-      <line x1="-38" y1="-10" x2="-31" y2="-9"/>
-      <line x1="36" y1="-20" x2="30" y2="-16"/>
-      <line x1="38" y1="-10" x2="31" y2="-9"/>
+  <!-- =================================================================== -->
+  <!-- SCENE D (RIGHT): Mascot Focusing & Typing at Laptop                 -->
+  <!-- =================================================================== -->
+  <rect x="544" y="50" width="312" height="214" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
+  <line x1="556" y1="224" x2="844" y2="224" stroke="{C.BORDER}" stroke-width="1.5"/>
+
+  <!-- Focused Mascot Leaning Forward Slightly -->
+  <g transform="translate(692, 160)">
+    <!-- Torso leaning in -->
+    <rect x="-24" y="22" width="48" height="42" rx="8" fill="#242424" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>
+    <!-- Head -->
+    <circle cx="0" cy="-8" r="26" fill="#E5E5E5" stroke="{C.BORDER}" stroke-width="1.2"/>
+    <path d="M -27 -8 C -27 -42, 27 -42, 27 -8 C 21 -22, 10 -18, 2 -12 L -4 -22 L -12 -12 L -20 -20 Z" fill="#1A1A1A" stroke="{C.TEXT_MUTED}" stroke-width="1.1"/>
+    <!-- Focused Determined Eyes & Brows -->
+    <line x1="-13" y1="-8" x2="-4" y2="-6" stroke="{C.BG_PRIMARY}" stroke-width="2" stroke-linecap="round"/>
+    <line x1="4" y1="-6" x2="13" y2="-8" stroke="{C.BG_PRIMARY}" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="-8" cy="-3" r="2.2" fill="{C.BG_PRIMARY}"/>
+    <circle cx="8" cy="-3" r="2.2" fill="{C.BG_PRIMARY}"/>
+    <!-- Small Focus Marks Around Head -->
+    <g class="focus-badge" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4" stroke-linecap="round">
+      <line x1="-38" y1="-22" x2="-32" y2="-18"/>
+      <line x1="-40" y1="-12" x2="-33" y2="-11"/>
+      <line x1="38" y1="-22" x2="32" y2="-18"/>
+      <line x1="40" y1="-12" x2="33" y2="-11"/>
     </g>
   </g>
 
-  <polygon points="166,350 220,350 228,384 174,384" fill="#161616" stroke="{C.TEXT_PRIMARY}" stroke-width="1.3"/>
-  <rect x="170" y="382" width="76" height="4" rx="1.5" fill="{C.TEXT_SECONDARY}"/>
+  <!-- Laptop on Desk -->
+  <polygon points="628,186 682,186 690,222 636,222" fill="#161616" stroke="{C.TEXT_PRIMARY}" stroke-width="1.3"/>
+  <rect x="632" y="220" width="76" height="4" rx="1.5" fill="{C.TEXT_SECONDARY}"/>
 
-  <!-- Status Badge Next to Focused Mascot -->
-  <rect x="304" y="314" width="268" height="36" rx="5" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1.2" class="focus-badge"/>
-  <text x="438" y="337" text-anchor="middle" class="mono focus-badge" font-size="14" font-weight="600" fill="{C.TEXT_PRIMARY}">focus: reading the docs...</text>
+  <!-- Status Badge Above Mascot -->
+  <rect x="598" y="66" width="204" height="26" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1" class="focus-badge"/>
+  <text x="700" y="83" text-anchor="middle" class="mono focus-badge" font-size="11" fill="{C.TEXT_PRIMARY}">focus: reading the docs...</text>
 
-  <text x="320" y="407" text-anchor="middle" class="mono" font-size="13" fill="{C.TEXT_MUTED}">status: actually making sense now</text>
+  <text x="700" y="248" text-anchor="middle" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">status: actually making sense now</text>
 </svg>
 '''
 
 
 def build_error_repair() -> str:
     """
-    Builds assets/error-repair.svg (640x436) — Section 12:
+    Builds assets/error-repair.svg (880x275) — Section 12:
     Error Animation — The AI Construction Truck.
-    Stacked layout for high mobile visibility:
-    Top: Simulated terminal error output + repair progress bar at 16px monospace.
-    Bottom: Full-width dedicated repair track with puzzled mascot, ERR_01/FIXED module,
-            miniature worker with animated wrench, and the [AI ASSIST] Construction Truck.
+    1. Terminal displays simulated error message:
+       ! error: something went wrong
+       > diagnosis: developer confusion
+       > requesting assistance...
+       > applying fix...
+       ✓ build successful (in this simulation)
+    2. Warning indicator appears, mascot looks confused.
+    3. Pixel-art construction truck carrying an [AI ASSIST] sign drives in along a dedicated
+       bottom repair lane (never overlapping terminal text or exceeding bounds).
+    4. Miniature worker inspects the error with wrench/repair sparks.
+    5. Progress indicator completes and simulated fixed state appears.
     """
-    w, h = 640, 436
+    w, h = 880, 275
 
     return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Simulated Error Animation — The AI Construction Truck">
   <title>Error Animation — The AI Construction Truck (Simulated)</title>
   <defs>
     <clipPath id="truckLaneClip">
-      <rect x="20" y="246" width="600" height="174" rx="6"/>
+      <rect x="432" y="42" width="434" height="222" rx="6"/>
     </clipPath>
   </defs>
   <style>
     .mono {{ font-family: {C.FONT_MONO}; }}
     .sans {{ font-family: {C.FONT_SANS}; }}
 
+    /* 14s deterministic error and construction truck repair loop */
     .err-line {{ animation: showErr 14s linear infinite; }}
     @keyframes showErr {{
       0%, 4% {{ opacity: 0; }}
@@ -617,6 +649,11 @@ def build_error_repair() -> str:
     }}
 
     .fix-line {{ animation: showFix 14s linear infinite; }}
+    @keyframes fixLine {{
+      0%, 46% {{ opacity: 0; }}
+      50%, 92% {{ opacity: 1; }}
+      97%, 100% {{ opacity: 0; }}
+    }}
     @keyframes showFix {{
       0%, 46% {{ opacity: 0; }}
       50%, 92% {{ opacity: 1; }}
@@ -633,20 +670,22 @@ def build_error_repair() -> str:
     .prog-fill {{ animation: progBar 14s ease-in-out infinite; }}
     @keyframes progBar {{
       0%, 46% {{ width: 0px; fill: {C.TEXT_MUTED}; }}
-      68% {{ width: 320px; fill: {C.TEXT_PRIMARY}; }}
-      72%, 92% {{ width: 320px; fill: {C.TERM_SUCCESS}; }}
+      68% {{ width: 220px; fill: {C.TEXT_PRIMARY}; }}
+      72%, 92% {{ width: 220px; fill: {C.TERM_SUCCESS}; }}
       97%, 100% {{ width: 0px; }}
     }}
 
+    /* Truck drives in from right (x=320 offset -> x=0 stop -> exits left) */
     .truck-rig {{ animation: truckDrive 14s ease-in-out infinite; }}
     @keyframes truckDrive {{
-      0%, 20% {{ transform: translateX(320px); opacity: 0; }}
+      0%, 20% {{ transform: translateX(280px); opacity: 0; }}
       24% {{ opacity: 1; }}
       36%, 74% {{ transform: translateX(0px); opacity: 1; }}
-      88% {{ transform: translateX(-340px); opacity: 1; }}
-      92%, 100% {{ transform: translateX(-360px); opacity: 0; }}
+      88% {{ transform: translateX(-290px); opacity: 1; }}
+      92%, 100% {{ transform: translateX(-310px); opacity: 0; }}
     }}
 
+    /* Worker and wrench repair action while truck is parked (38% - 68%) */
     .worker-fix {{ animation: workerAct 14s linear infinite; }}
     @keyframes workerAct {{
       0%, 36% {{ opacity: 0; }}
@@ -654,7 +693,7 @@ def build_error_repair() -> str:
       72%, 100% {{ opacity: 0; }}
     }}
 
-    .wrench-turn {{ animation: wrenchRot 0.8s ease-in-out infinite; transform-origin: 282px 352px; }}
+    .wrench-turn {{ animation: wrenchRot 0.8s ease-in-out infinite; transform-origin: 572px 192px; }}
     @keyframes wrenchRot {{
       0%, 100% {{ transform: rotate(-18deg); }}
       50% {{ transform: rotate(22deg); }}
@@ -672,7 +711,7 @@ def build_error_repair() -> str:
     @media (prefers-reduced-motion: reduce) {{
       .err-line, .req-line, .fix-line, .ok-line, .fixed-badge {{ animation: none !important; opacity: 1 !important; }}
       .warn-badge {{ display: none !important; }}
-      .prog-fill {{ animation: none !important; width: 320px !important; fill: {C.TERM_SUCCESS} !important; }}
+      .prog-fill {{ animation: none !important; width: 220px !important; fill: {C.TERM_SUCCESS} !important; }}
       .truck-rig {{ animation: none !important; transform: translateX(0px) !important; opacity: 1 !important; }}
       .worker-fix {{ animation: none !important; opacity: 1 !important; }}
       .wrench-turn {{ animation: none !important; }}
@@ -681,102 +720,121 @@ def build_error_repair() -> str:
 
   <!-- Outer Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Top Terminal Header -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="22" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="38" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <circle cx="54" cy="19.5" r="4.5" fill="{C.TEXT_DIM}"/>
-  <text x="74" y="24" class="mono" font-size="13.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/debug-sim (error &amp; repair)</text>
-  <text x="{w - 20}" y="24" text-anchor="end" class="mono" font-size="12.5" fill="{C.TEXT_MUTED}">[simulated]</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/debug-simulation (error &amp; repair demo)</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">[simulated sequence]</text>
 
-  <!-- TOP SECTION: Simulated Terminal Output & Progress Bar -->
-  <text x="26" y="68" class="mono err-line" font-size="16" font-weight="700" fill="{C.TERM_ERROR}">! error: something went wrong</text>
-  <text x="26" y="98" class="mono err-line" font-size="15.5" fill="{C.TEXT_SECONDARY}">&gt; diagnosis: developer confusion</text>
-  <text x="26" y="128" class="mono req-line" font-size="15.5" fill="{C.TEXT_SECONDARY}">&gt; requesting assistance...</text>
-  <text x="26" y="158" class="mono fix-line" font-size="15.5" fill="{C.TEXT_PRIMARY}">&gt; applying fix...</text>
+  <!-- =================================================================== -->
+  <!-- LEFT SIDE (24..412): Simulated Terminal Output & Progress Bar       -->
+  <!-- =================================================================== -->
+  <text x="28" y="68" class="mono err-line" font-size="13.5" font-weight="600" fill="{C.TERM_ERROR}">! error: something went wrong</text>
+  <text x="28" y="98" class="mono err-line" font-size="13" fill="{C.TEXT_SECONDARY}">&gt; diagnosis: developer confusion</text>
+  <text x="28" y="128" class="mono req-line" font-size="13" fill="{C.TEXT_SECONDARY}">&gt; requesting assistance...</text>
+  <text x="28" y="158" class="mono fix-line" font-size="13" fill="{C.TEXT_PRIMARY}">&gt; applying fix...</text>
 
+  <!-- Simulated Repair Progress Bar -->
   <g class="fix-line">
-    <rect x="26" y="172" width="320" height="14" rx="4" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.1"/>
-    <rect x="26" y="172" width="320" height="14" rx="4" fill="{C.TERM_SUCCESS}" class="prog-fill"/>
-    <text x="358" y="184" class="mono" font-size="13" fill="{C.TEXT_MUTED}">repair_job</text>
+    <rect x="28" y="174" width="220" height="12" rx="3" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
+    <rect x="28" y="174" width="220" height="12" rx="3" fill="{C.TERM_SUCCESS}" class="prog-fill"/>
+    <text x="258" y="184" class="mono" font-size="11" fill="{C.TEXT_MUTED}">repair_job</text>
   </g>
 
-  <text x="26" y="216" class="mono ok-line" font-size="16" font-weight="700" fill="{C.TERM_SUCCESS}">&#10003; build successful (in this simulation)</text>
+  <!-- Restrained Simulated Success Line -->
+  <text x="28" y="218" class="mono ok-line" font-size="13.5" font-weight="600" fill="{C.TERM_SUCCESS}">&#10003; build successful (in this simulation)</text>
+  <text x="28" y="248" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">// demonstration only &#8212; no real build harmed</text>
 
-  <!-- Horizontal Separator -->
-  <line x1="20" y1="234" x2="620" y2="234" stroke="{C.BORDER}" stroke-width="1"/>
+  <!-- Vertical Separator -->
+  <line x1="420" y1="34" x2="420" y2="274" stroke="{C.BORDER}" stroke-width="1"/>
 
-  <!-- BOTTOM SECTION: Puzzled Mascot + Pixel AI Construction Truck -->
-  <rect x="20" y="246" width="600" height="174" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <!-- =================================================================== -->
+  <!-- RIGHT SIDE (432..866): Puzzled Mascot + Pixel AI Construction Truck -->
+  <!-- =================================================================== -->
+  <rect x="432" y="42" width="434" height="220" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
 
   <g clip-path="url(#truckLaneClip)">
-    <!-- Puzzled Mascot Avatar on Left of Track -->
-    <g transform="translate(92, 316)">
-      <circle cx="0" cy="0" r="24" fill="#E5E5E5" stroke="{C.BORDER}" stroke-width="1.2"/>
-      <path d="M -24 0 C -24 -30, 24 -30, 24 0 C 17 -12, 5 -10, -2 -4 L -9 -14 L -16 -4 Z" fill="#1A1A1A"/>
-      <line x1="-11" y1="2" x2="-4" y2="2" stroke="{C.BG_PRIMARY}" stroke-width="2.2"/>
-      <line x1="4" y1="2" x2="11" y2="2" stroke="{C.BG_PRIMARY}" stroke-width="2.2"/>
-      <text x="28" y="-8" class="mono warn-badge" font-size="16" font-weight="700" fill="{C.TEXT_SECONDARY}">?</text>
+    <!-- Top Section inside Right Panel: Puzzled Mascot + Error Module Box -->
+    <!-- Small Puzzled Mascot Avatar -->
+    <g transform="translate(480, 96)">
+      <circle cx="0" cy="0" r="20" fill="#E5E5E5" stroke="{C.BORDER}" stroke-width="1.2"/>
+      <path d="M -20 0 C -20 -26, 20 -26, 20 0 C 14 -10, 4 -8, -2 -4 L -8 -12 L -14 -4 Z" fill="#1A1A1A"/>
+      <line x1="-9" y1="2" x2="-3" y2="2" stroke="{C.BG_PRIMARY}" stroke-width="2"/>
+      <line x1="3" y1="2" x2="9" y2="2" stroke="{C.BG_PRIMARY}" stroke-width="2"/>
+      <text x="24" y="-8" class="mono warn-badge" font-size="13" font-weight="700" fill="{C.TEXT_SECONDARY}">?</text>
     </g>
 
     <!-- Error / Build Module Box on Work Track -->
     <g class="warn-badge">
-      <rect x="196" y="302" width="76" height="48" rx="5" fill="#140C0C" stroke="{C.TERM_ERROR}" stroke-width="1.4"/>
-      <polygon points="234,310 222,330 246,330" fill="none" stroke="{C.TERM_WARN}" stroke-width="1.5"/>
-      <text x="234" y="328" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="{C.TERM_WARN}">!</text>
-      <text x="234" y="344" text-anchor="middle" class="mono" font-size="10.5" font-weight="600" fill="{C.TERM_ERROR}">ERR_01</text>
+      <rect x="520" y="138" width="66" height="42" rx="4" fill="#140C0C" stroke="{C.TERM_ERROR}" stroke-width="1.3"/>
+      <polygon points="553,146 543,164 563,164" fill="none" stroke="{C.TERM_WARN}" stroke-width="1.4"/>
+      <text x="553" y="162" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="{C.TERM_WARN}">!</text>
+      <text x="553" y="175" text-anchor="middle" class="mono" font-size="8.5" fill="{C.TERM_ERROR}">ERR_01</text>
     </g>
 
     <!-- Fixed Module State -->
     <g class="fixed-badge">
-      <rect x="196" y="302" width="76" height="48" rx="5" fill="#0B140E" stroke="{C.TERM_SUCCESS}" stroke-width="1.4"/>
-      <text x="234" y="327" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="{C.TERM_SUCCESS}">&#10003;</text>
-      <text x="234" y="343" text-anchor="middle" class="mono" font-size="10.5" font-weight="700" fill="{C.TERM_SUCCESS}">FIXED</text>
+      <rect x="520" y="138" width="66" height="42" rx="4" fill="#0B140E" stroke="{C.TERM_SUCCESS}" stroke-width="1.3"/>
+      <text x="553" y="160" text-anchor="middle" class="mono" font-size="13" font-weight="700" fill="{C.TERM_SUCCESS}">&#10003;</text>
+      <text x="553" y="174" text-anchor="middle" class="mono" font-size="8.5" fill="{C.TERM_SUCCESS}">FIXED</text>
     </g>
 
-    <!-- Miniature Pixel Worker + Toolbox + Wrench -->
+    <!-- Miniature Pixel Worker + Toolbox + Wrench Inspecting the Problem -->
     <g class="worker-fix">
-      <rect x="302" y="358" width="20" height="14" rx="1.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.1"/>
-      <line x1="306" y1="358" x2="318" y2="358" stroke="{C.TEXT_PRIMARY}" stroke-width="2"/>
-      <rect x="280" y="350" width="14" height="20" rx="2" fill="#2A2A2A" stroke="{C.TEXT_SECONDARY}" stroke-width="1.1"/>
-      <circle cx="287" cy="342" r="7" fill="#E5E5E5"/>
-      <path d="M 278 341 C 278 333, 296 333, 296 341 Z" fill="{C.TERM_WARN}"/>
+      <!-- Red/Grey Pixel Toolbox -->
+      <rect x="588" y="198" width="18" height="12" rx="1" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1"/>
+      <line x1="592" y1="198" x2="602" y2="198" stroke="{C.TEXT_PRIMARY}" stroke-width="2"/>
+      <!-- Worker body -->
+      <rect x="570" y="190" width="12" height="18" rx="2" fill="#2A2A2A" stroke="{C.TEXT_SECONDARY}" stroke-width="1"/>
+      <!-- Worker head & safety hard-hat -->
+      <circle cx="576" cy="183" r="6" fill="#E5E5E5"/>
+      <path d="M 568 182 C 568 175, 584 175, 584 182 Z" fill="{C.TERM_WARN}"/>
+      <!-- Animated Wrench & Sparks -->
       <g class="wrench-turn">
-        <line x1="282" y1="352" x2="268" y2="334" stroke="{C.TEXT_PRIMARY}" stroke-width="2.4" stroke-linecap="round"/>
-        <circle cx="267" cy="333" r="3.5" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.6"/>
+        <line x1="572" y1="192" x2="560" y2="176" stroke="{C.TEXT_PRIMARY}" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="559" cy="175" r="3" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5"/>
       </g>
-      <text x="270" y="326" class="mono" font-size="12" fill="{C.TERM_WARN}">*</text>
-      <text x="286" y="324" class="mono" font-size="11" fill="{C.TEXT_PRIMARY}">+</text>
+      <text x="562" y="168" class="mono" font-size="10" fill="{C.TERM_WARN}">*</text>
+      <text x="576" y="166" class="mono" font-size="9" fill="{C.TEXT_PRIMARY}">+</text>
     </g>
 
     <!-- Pixel-Art AI Construction Truck on Dedicated Track -->
     <g class="truck-rig">
-      <rect x="376" y="302" width="136" height="36" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.TERM_WARN}" stroke-width="1.4"/>
-      <text x="444" y="325" text-anchor="middle" class="mono" font-size="13.5" font-weight="700" fill="{C.TEXT_PRIMARY}">[ AI ASSIST ]</text>
+      <!-- Cargo Signboard: [ AI ASSIST ] -->
+      <rect x="652" y="148" width="114" height="32" rx="3" fill="{C.BG_PRIMARY}" stroke="{C.TERM_WARN}" stroke-width="1.3"/>
+      <text x="709" y="168" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="{C.TEXT_PRIMARY}">[ AI ASSIST ]</text>
 
-      <rect x="368" y="338" width="146" height="26" rx="2.5" fill="#1C1C1C" stroke="{C.TEXT_SECONDARY}" stroke-width="1.3"/>
-      <line x1="378" y1="344" x2="384" y2="358" stroke="{C.TERM_WARN}" stroke-width="2.2"/>
-      <line x1="392" y1="344" x2="398" y2="358" stroke="{C.TERM_WARN}" stroke-width="2.2"/>
-      <line x1="406" y1="344" x2="412" y2="358" stroke="{C.TERM_WARN}" stroke-width="2.2"/>
+      <!-- Truck Bed / Chassis -->
+      <rect x="646" y="180" width="124" height="24" rx="2" fill="#1C1C1C" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>
+      <!-- Hazard stripes on bumper -->
+      <line x1="654" y1="186" x2="660" y2="198" stroke="{C.TERM_WARN}" stroke-width="2"/>
+      <line x1="666" y1="186" x2="672" y2="198" stroke="{C.TERM_WARN}" stroke-width="2"/>
+      <line x1="678" y1="186" x2="684" y2="198" stroke="{C.TERM_WARN}" stroke-width="2"/>
 
-      <polygon points="332,340 346,318 368,318 368,364 332,364" fill="#262626" stroke="{C.TEXT_PRIMARY}" stroke-width="1.3"/>
-      <polygon points="338,338 348,322 364,322 364,338" fill="#090909" stroke="{C.BORDER}" stroke-width="1"/>
-      <rect x="351" y="311" width="9" height="6" rx="1.5" fill="{C.TERM_WARN}"/>
+      <!-- Truck Cab (Facing Left toward the error module) -->
+      <polygon points="614,182 626,162 646,162 646,204 614,204" fill="#262626" stroke="{C.TEXT_PRIMARY}" stroke-width="1.2"/>
+      <!-- Cab Window -->
+      <polygon points="619,180 628,166 642,166 642,180" fill="#090909" stroke="{C.BORDER}" stroke-width="1"/>
+      <!-- Amber Roof Beacon -->
+      <rect x="631" y="156" width="8" height="5" rx="1.5" fill="{C.TERM_WARN}"/>
 
-      <circle cx="352" cy="366" r="10" fill="#0A0A0A" stroke="{C.TEXT_SECONDARY}" stroke-width="2.2"/>
-      <circle cx="352" cy="366" r="3.5" fill="{C.TEXT_PRIMARY}"/>
-      <circle cx="410" cy="366" r="10" fill="#0A0A0A" stroke="{C.TEXT_SECONDARY}" stroke-width="2.2"/>
-      <circle cx="410" cy="366" r="3.5" fill="{C.TEXT_PRIMARY}"/>
-      <circle cx="482" cy="366" r="10" fill="#0A0A0A" stroke="{C.TEXT_SECONDARY}" stroke-width="2.2"/>
-      <circle cx="482" cy="366" r="3.5" fill="{C.TEXT_PRIMARY}"/>
+      <!-- Wheels -->
+      <circle cx="632" cy="206" r="9" fill="#0A0A0A" stroke="{C.TEXT_SECONDARY}" stroke-width="2"/>
+      <circle cx="632" cy="206" r="3" fill="{C.TEXT_PRIMARY}"/>
+      <circle cx="682" cy="206" r="9" fill="#0A0A0A" stroke="{C.TEXT_SECONDARY}" stroke-width="2"/>
+      <circle cx="682" cy="206" r="3" fill="{C.TEXT_PRIMARY}"/>
+      <circle cx="744" cy="206" r="9" fill="#0A0A0A" stroke="{C.TEXT_SECONDARY}" stroke-width="2"/>
+      <circle cx="744" cy="206" r="3" fill="{C.TEXT_PRIMARY}"/>
     </g>
 
     <!-- Dedicated Ground Track Line -->
-    <line x1="36" y1="377" x2="604" y2="377" stroke="{C.BORDER}" stroke-width="1.5" stroke-dasharray="6 4"/>
-    <text x="320" y="402" text-anchor="middle" class="mono" font-size="13" fill="{C.TEXT_MUTED}">lane: emergency_patch_unit.exe // demonstration only</text>
+    <line x1="444" y1="216" x2="854" y2="216" stroke="{C.BORDER}" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="649" y="244" text-anchor="middle" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">lane: emergency_patch_unit.exe</text>
   </g>
 </svg>
 '''
@@ -784,22 +842,23 @@ def build_error_repair() -> str:
 
 def build_knowledge_panel() -> str:
     """
-    Builds assets/knowledge-panel.svg (640x360) — Section 13:
+    Builds assets/knowledge-panel.svg (880x220) — Section 13:
     Knowledge Base — Notes, experiments, and things I'm learning.
-    Stacked layout for mobile & desktop legibility:
-    Top: File explorer directory (learning-notes/, experiments/, project-references/, ideas/).
-    Bottom: Restrained archive opening animation (> extracting knowledge..., > still learning...).
+    Left: File explorer / terminal directory (learning-notes/, experiments/, project-references/, ideas/).
+    Right: Restrained archive opening animation ending with:
+      > extracting knowledge...
+      > still learning...
     """
-    w, h = 640, 360
+    w, h = 880, 220
     dir_rows: list[str] = []
     for idx, (dname, ddesc, _path) in enumerate(C.KNOWLEDGE_DIRS):
-        ry = 94 + idx * 32
+        ry = 86 + idx * 30
         dir_rows.append(
-            f'<g transform="translate(24, {ry})">'
-            f'<rect x="0" y="-14" width="16" height="13" rx="2" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.2"/>'
-            f'<path d="M 0 -12 H 7 L 9 -14 H 0 Z" fill="{C.TEXT_SECONDARY}"/>'
-            f'<text x="26" y="-2" class="mono" font-size="15" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(dname)}</text>'
-            f'<text x="218" y="-2" class="sans" font-size="14" fill="{C.TEXT_SECONDARY}">// {escape(ddesc)}</text>'
+            f'<g transform="translate(28, {ry})">'
+            f'<rect x="0" y="-12" width="14" height="11" rx="1.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1.1"/>'
+            f'<path d="M 0 -10 H 6 L 8 -12 H 0 Z" fill="{C.TEXT_SECONDARY}"/>'
+            f'<text x="22" y="-2" class="mono" font-size="12.5" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(dname)}</text>'
+            f'<text x="186" y="-2" class="sans" font-size="12" fill="{C.TEXT_SECONDARY}">// {escape(ddesc)}</text>'
             f'</g>'
         )
 
@@ -810,9 +869,9 @@ def build_knowledge_panel() -> str:
     .sans {{ font-family: {C.FONT_SANS}; }}
     .zip-bar {{ animation: zipLoad 8s ease-in-out infinite; }}
     @keyframes zipLoad {{
-      0%, 10% {{ width: 24px; }}
-      55%, 88% {{ width: 320px; }}
-      96%, 100% {{ width: 24px; }}
+      0%, 10% {{ width: 18px; }}
+      55%, 88% {{ width: 224px; }}
+      96%, 100% {{ width: 18px; }}
     }}
     .zip-step2 {{ animation: zStep2 8s linear infinite; }}
     @keyframes zStep2 {{
@@ -821,64 +880,67 @@ def build_knowledge_panel() -> str:
       96%, 100% {{ opacity: 0.25; }}
     }}
     @media (prefers-reduced-motion: reduce) {{
-      .zip-bar {{ animation: none !important; width: 280px !important; }}
+      .zip-bar {{ animation: none !important; width: 180px !important; }}
       .zip-step2 {{ animation: none !important; opacity: 1 !important; }}
     }}
   </style>
 
   <!-- Outer Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Header Strip -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="20" y="25" class="mono" font-size="14.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.KNOWLEDGE_TITLE)}</text>
-  <text x="164" y="25" class="sans" font-size="14" fill="{C.TEXT_SECONDARY}">&#8212; {escape(C.KNOWLEDGE_SUBTITLE)}</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="24" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.KNOWLEDGE_TITLE)}</text>
+  <text x="150" y="22" class="sans" font-size="12" fill="{C.TEXT_SECONDARY}">&#8212; {escape(C.KNOWLEDGE_SUBTITLE)}</text>
 
-  <!-- Top Explorer Tree -->
-  <text x="24" y="64" class="mono" font-size="13.5" fill="{C.TEXT_MUTED}">~/knowledge-base/</text>
+  <!-- Left Explorer Tree -->
+  <text x="28" y="56" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">~/knowledge-base/</text>
   {"".join(dir_rows)}
 
-  <!-- Bottom Archive Extraction Visual Concept -->
-  <rect x="20" y="222" width="600" height="120" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <!-- Vertical Separator -->
+  <line x1="556" y1="34" x2="556" y2="219" stroke="{C.BORDER}" stroke-width="1"/>
+
+  <!-- Right Side: Archive Extraction Visual Concept -->
+  <rect x="576" y="48" width="280" height="154" rx="6" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Pixel ZIP Archive Icon -->
-  <g transform="translate(40, 240)">
-    <rect x="0" y="0" width="32" height="38" rx="3.5" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_PRIMARY}" stroke-width="1.3"/>
-    <line x1="16" y1="2" x2="16" y2="24" stroke="{C.TEXT_SECONDARY}" stroke-width="3.2" stroke-dasharray="2.5 2.5"/>
-    <rect x="11" y="24" width="10" height="7" fill="{C.TEXT_PRIMARY}"/>
+  <g transform="translate(596, 64)">
+    <rect x="0" y="0" width="28" height="34" rx="3" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_PRIMARY}" stroke-width="1.2"/>
+    <line x1="14" y1="2" x2="14" y2="22" stroke="{C.TEXT_SECONDARY}" stroke-width="3" stroke-dasharray="2 2"/>
+    <rect x="10" y="22" width="8" height="6" fill="{C.TEXT_PRIMARY}"/>
   </g>
-  <text x="86" y="257" class="mono" font-size="15" font-weight="700" fill="{C.TEXT_PRIMARY}">notes-archive.zip</text>
-  <text x="86" y="276" class="mono" font-size="12.5" fill="{C.TEXT_MUTED}">[concept preview]</text>
+  <text x="636" y="79" class="mono" font-size="12" font-weight="600" fill="{C.TEXT_PRIMARY}">notes-archive.zip</text>
+  <text x="636" y="95" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">[concept preview]</text>
 
   <!-- Loading Indicator -->
-  <rect x="256" y="246" width="340" height="12" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1.1"/>
-  <rect x="256" y="246" width="280" height="12" rx="4" fill="{C.TEXT_PRIMARY}" class="zip-bar"/>
+  <rect x="596" y="112" width="240" height="10" rx="3" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1"/>
+  <rect x="596" y="112" width="180" height="10" rx="3" fill="{C.TEXT_PRIMARY}" class="zip-bar"/>
 
   <!-- Extraction Status Lines -->
-  <text x="40" y="306" class="mono" font-size="14.5" fill="{C.TEXT_SECONDARY}">&gt; extracting knowledge...</text>
-  <text x="310" y="306" class="mono zip-step2" font-size="14.5" font-weight="600" fill="{C.TEXT_PRIMARY}">&gt; still learning...</text>
+  <text x="596" y="150" class="mono" font-size="12" fill="{C.TEXT_SECONDARY}">&gt; extracting knowledge...</text>
+  <text x="596" y="174" class="mono zip-step2" font-size="12" fill="{C.TEXT_PRIMARY}">&gt; still learning...</text>
 </svg>
 '''
 
 
 def build_funny_quote() -> str:
     """
-    Builds assets/funny-quote.svg (640x256) — Section 14:
+    Builds assets/funny-quote.svg (880x230) — Section 14:
     Trying to Understand.
     Uses the confused mascot from 31595634885785270.jpg (confused-mascot.jpg),
-    hand-drawn question marks, and a spacious speech bubble in a 640px viewBox
-    so the quote renders large and legible on mobile and desktop:
+    adds 2-3 hand-drawn question marks with a subtle pop, tiny thoughtful head tilt,
+    and restrained speech bubble displaying:
     "When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real."
     """
-    w, h = 640, 256
+    w, h = 880, 230
     confused_b64 = C.get_asset_base64("confused-mascot.jpg")
     mascot_img_tag = ""
     if confused_b64:
         mascot_img_tag = (
             f'<image href="data:image/jpeg;base64,{confused_b64}" '
-            f'x="34" y="58" width="148" height="148" preserveAspectRatio="xMidYMid slice" '
+            f'x="44" y="48" width="144" height="144" preserveAspectRatio="xMidYMid slice" '
             f'clip-path="url(#confusedClip)"/>'
         )
 
@@ -886,22 +948,22 @@ def build_funny_quote() -> str:
   <title>Trying to Understand</title>
   <defs>
     <clipPath id="confusedClip">
-      <rect x="34" y="58" width="148" height="148" rx="8"/>
+      <rect x="44" y="48" width="144" height="144" rx="8"/>
     </clipPath>
   </defs>
   <style>
     .mono {{ font-family: {C.FONT_MONO}; }}
     .sans {{ font-family: {C.FONT_SANS}; }}
 
-    .head-tilt {{ animation: tilt 5s ease-in-out infinite; transform-origin: 108px 132px; }}
+    .head-tilt {{ animation: tilt 5s ease-in-out infinite; transform-origin: 116px 120px; }}
     @keyframes tilt {{
       0%, 100% {{ transform: rotate(0deg); }}
       50% {{ transform: rotate(-2.2deg); }}
     }}
 
-    .q1 {{ animation: qPop1 6s ease-in-out infinite; transform-origin: 24px 68px; }}
-    .q2 {{ animation: qPop2 6s ease-in-out infinite; transform-origin: 192px 64px; }}
-    .q3 {{ animation: qPop3 6s ease-in-out infinite; transform-origin: 200px 104px; }}
+    .q1 {{ animation: qPop1 6s ease-in-out infinite; transform-origin: 34px 62px; }}
+    .q2 {{ animation: qPop2 6s ease-in-out infinite; transform-origin: 198px 58px; }}
+    .q3 {{ animation: qPop3 6s ease-in-out infinite; transform-origin: 206px 96px; }}
     @keyframes qPop1 {{
       0%, 12%, 100% {{ opacity: 0.25; transform: scale(0.9); }}
       22%, 78% {{ opacity: 1; transform: scale(1.06); }}
@@ -929,51 +991,49 @@ def build_funny_quote() -> str:
 
   <!-- Outer Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- Top Header Strip -->
-  <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
-  <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="20" y="25" class="mono" font-size="14.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// Trying to Understand</text>
-  <text x="{w - 20}" y="25" text-anchor="end" class="mono" font-size="13" fill="{C.TEXT_MUTED}">mood: confused_concentration.jpg</text>
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <text x="24" y="22" class="mono" font-size="12" font-weight="700" fill="{C.TEXT_PRIMARY}">// Trying to Understand</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">mood: confused_concentration.jpg</text>
 
-  <!-- Left Side: Confused Mascot Reference -->
+  <!-- Left Side: Confused Mascot Reference + Restrained Hand-Drawn Question Marks -->
   <g class="head-tilt">
-    <rect x="33" y="57" width="150" height="150" rx="9" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
+    <rect x="43" y="47" width="146" height="146" rx="9" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
     {mascot_img_tag}
   </g>
 
   <!-- Hand-drawn SVG Question Marks & Doodle Marks -->
-  <g class="q1" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="2" stroke-linecap="round">
-    <path d="M 14 62 C 14 54, 26 54, 26 62 C 26 67, 20 68, 20 73"/>
-    <circle cx="20" cy="79" r="1.4" fill="{C.TEXT_PRIMARY}"/>
+  <g class="q1" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.8" stroke-linecap="round">
+    <path d="M 24 54 C 24 46, 36 46, 36 54 C 36 59, 30 60, 30 65"/>
+    <circle cx="30" cy="71" r="1.2" fill="{C.TEXT_PRIMARY}"/>
   </g>
-  <g class="q2" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="2" stroke-linecap="round">
-    <path d="M 190 60 C 190 52, 202 52, 202 60 C 202 65, 196 66, 196 71"/>
-    <circle cx="196" cy="77" r="1.4" fill="{C.TEXT_PRIMARY}"/>
+  <g class="q2" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.8" stroke-linecap="round">
+    <path d="M 196 52 C 196 44, 208 44, 208 52 C 208 57, 202 58, 202 63"/>
+    <circle cx="202" cy="69" r="1.2" fill="{C.TEXT_PRIMARY}"/>
   </g>
-  <g class="q3" fill="none" stroke="{C.TEXT_SECONDARY}" stroke-width="1.7" stroke-linecap="round">
-    <path d="M 196 96 C 196 90, 205 90, 205 96 C 205 100, 200 101, 200 105"/>
-    <circle cx="200" cy="110" r="1.2" fill="{C.TEXT_SECONDARY}"/>
-    <line x1="188" y1="124" x2="195" y2="122"/>
-    <line x1="189" y1="130" x2="197" y2="130"/>
+  <g class="q3" fill="none" stroke="{C.TEXT_SECONDARY}" stroke-width="1.5" stroke-linecap="round">
+    <path d="M 204 88 C 204 82, 213 82, 213 88 C 213 92, 208 93, 208 97"/>
+    <circle cx="208" cy="102" r="1" fill="{C.TEXT_SECONDARY}"/>
+    <!-- Small hand-drawn concentration ticks -->
+    <line x1="194" y1="116" x2="201" y2="114"/>
+    <line x1="195" y1="122" x2="203" y2="122"/>
   </g>
 
-  <!-- Right Side: Speech Bubble with 3 Large Lines of Verbatim Text -->
+  <!-- Right Side: Restrained Speech Bubble with Pointer -->
   <g class="quote-fade">
-    <path d="M 224 58 H 612 A 8 8 0 0 1 620 66 V 202 A 8 8 0 0 1 612 210 H 224 A 8 8 0 0 1 216 202 V 144 L 198 134 L 216 124 V 66 A 8 8 0 0 1 224 58 Z"
-          fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.3"/>
+    <path d="M 244 66 H 844 A 8 8 0 0 1 852 74 V 182 A 8 8 0 0 1 844 190 H 244 A 8 8 0 0 1 236 182 V 132 L 218 122 L 236 112 V 74 A 8 8 0 0 1 244 66 Z"
+          fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
 
-    <text x="236" y="96" class="sans" font-size="16.5" font-weight="700" fill="{C.TEXT_PRIMARY}">
-      &#8220;When I say Ehh, ehhh, ehhhh...
+    <text x="262" y="106" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_PRIMARY}">
+      &#8220;When I say Ehh, ehhh, ehhhh... like for three time,
     </text>
-    <text x="236" y="124" class="sans" font-size="16.5" font-weight="700" fill="{C.TEXT_PRIMARY}">
-      like for three time, don&apos;t give up on me bro,
+    <text x="262" y="134" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_PRIMARY}">
+      don&apos;t give up on me bro, I&apos;m trying to understand it for real.&#8221;
     </text>
-    <text x="236" y="152" class="sans" font-size="16.5" font-weight="700" fill="{C.TEXT_PRIMARY}">
-      I&apos;m trying to understand it for real.&#8221;
-    </text>
-    <text x="236" y="186" class="mono" font-size="12" fill="{C.TEXT_MUTED}">
+    <text x="262" y="166" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">
       {escape(C.FUNNY_QUOTE_CAPTION)}
     </text>
   </g>

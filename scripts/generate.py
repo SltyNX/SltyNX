@@ -13,6 +13,7 @@ if str(SCRIPT_DIR) not in sys.path:
 
 import generate_dotmatrix
 import generate_hero
+import generate_mobile
 import generate_terminal
 
 
@@ -21,12 +22,13 @@ def main() -> int:
     all_written.update(generate_hero.generate_all())
     all_written.update(generate_dotmatrix.generate_all())
     all_written.update(generate_terminal.generate_all())
+    all_written.update(generate_mobile.generate_all())
 
     print("SltyNX Profile Asset Generation Complete:")
     print("-" * 50)
     for name in sorted(all_written):
         path = all_written[name]
-        print(f"  {name:26s} {path.stat().st_size:>9,} bytes")
+        print(f"  {name:30s} {path.stat().st_size:>9,} bytes")
     print("-" * 50)
     print(f"Total assets verified: {len(all_written)}")
     return 0
