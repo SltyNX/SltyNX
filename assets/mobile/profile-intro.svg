@@ -3,47 +3,47 @@
   <defs><clipPath id="mpiClip0"><rect x="14" y="46" width="352" height="24" class="mpiline0"/></clipPath><clipPath id="mpiClip1"><rect x="14" y="78" width="352" height="24" class="mpiline1"/></clipPath><clipPath id="mpiClip2"><rect x="14" y="102" width="352" height="24" class="mpiline2"/></clipPath><clipPath id="mpiClip3"><rect x="14" y="126" width="352" height="24" class="mpiline3"/></clipPath><clipPath id="mpiClip4"><rect x="14" y="158" width="352" height="24" class="mpiline4"/></clipPath><clipPath id="mpiClip5"><rect x="14" y="182" width="352" height="24" class="mpiline5"/></clipPath><clipPath id="mpiClip6"><rect x="14" y="206" width="352" height="24" class="mpiline6"/></clipPath></defs>
   <style>
     .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace; }
-    .mpiline0 { animation: mpiType0 12s steps(36, end) infinite; }
+    .mpiline0 { animation: mpiType0 22s steps(36, end) infinite; }
     @keyframes mpiType0 {
-      0%, 3% { width: 0px; }
-      12%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 42% { width: 0px; }
+      47%, 100% { width: 352px; }
     }
-.mpiline1 { animation: mpiType1 12s steps(36, end) infinite; }
+.mpiline1 { animation: mpiType1 22s steps(36, end) infinite; }
     @keyframes mpiType1 {
-      0%, 15% { width: 0px; }
-      27%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 48% { width: 0px; }
+      53%, 100% { width: 352px; }
     }
-.mpiline2 { animation: mpiType2 12s steps(36, end) infinite; }
+.mpiline2 { animation: mpiType2 22s steps(36, end) infinite; }
     @keyframes mpiType2 {
-      0%, 27% { width: 0px; }
-      39%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 53% { width: 0px; }
+      58%, 100% { width: 352px; }
     }
-.mpiline3 { animation: mpiType3 12s steps(36, end) infinite; }
+.mpiline3 { animation: mpiType3 22s steps(36, end) infinite; }
     @keyframes mpiType3 {
-      0%, 39% { width: 0px; }
-      50%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 58% { width: 0px; }
+      63%, 100% { width: 352px; }
     }
-.mpiline4 { animation: mpiType4 12s steps(36, end) infinite; }
+.mpiline4 { animation: mpiType4 22s steps(36, end) infinite; }
     @keyframes mpiType4 {
-      0%, 54% { width: 0px; }
-      65%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 65% { width: 0px; }
+      70%, 100% { width: 352px; }
     }
-.mpiline5 { animation: mpiType5 12s steps(36, end) infinite; }
+.mpiline5 { animation: mpiType5 22s steps(36, end) infinite; }
     @keyframes mpiType5 {
-      0%, 65% { width: 0px; }
-      77%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 70% { width: 0px; }
+      75%, 100% { width: 352px; }
     }
-.mpiline6 { animation: mpiType6 12s steps(36, end) infinite; }
+.mpiline6 { animation: mpiType6 22s steps(36, end) infinite; }
     @keyframes mpiType6 {
-      0%, 77% { width: 0px; }
-      88%, 94% { width: 352px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 352px; }
+      41%, 75% { width: 0px; }
+      80%, 100% { width: 352px; }
     }
     .pi-cur { animation: piBlink 1s steps(2, start) infinite; }
     @keyframes piBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }

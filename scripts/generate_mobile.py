@@ -359,13 +359,13 @@ def build_profile_intro() -> str:
     """
     w, h = 380, 276
     intro_lines = [
-        ("cmd", "$ cat profile_intro.txt", 64, 3, 12),
-        ("pri", "> Just a guy who sleeps a lot,", 96, 15, 27),
-        ("pri", "  codes a little, and dreams of", 120, 27, 39),
-        ("pri", "  building something cool.", 144, 39, 50),
-        ("sec", "> Currently a noob developer.", 176, 54, 65),
-        ("sec", "  Learning as I go, breaking things", 200, 65, 77),
-        ("sec", "  occasionally, & trying to learn.", 224, 77, 88),
+        ("cmd", "$ cat profile_intro.txt", 64, 42, 47),
+        ("pri", "> Just a guy who sleeps a lot,", 96, 48, 53),
+        ("pri", "  codes a little, and dreams of", 120, 53, 58),
+        ("pri", "  building something cool.", 144, 58, 63),
+        ("sec", "> Currently a noob developer.", 176, 65, 70),
+        ("sec", "  Learning as I go, breaking things", 200, 70, 75),
+        ("sec", "  occasionally, & trying to learn.", 224, 75, 80),
     ]
 
     clips: list[str] = []
@@ -384,11 +384,11 @@ def build_profile_intro() -> str:
             f'<text x="18" y="{y}" clip-path="url(#mpiClip{idx})" class="mono" font-size="14"{fweight} fill="{col}" xml:space="preserve">{escape(txt)}</text>'
         )
         css_rules.append(
-            f".mpiline{idx} {{ animation: mpiType{idx} 12s steps(36, end) infinite; }}\n"
+            f".mpiline{idx} {{ animation: mpiType{idx} 22s steps(36, end) infinite; }}\n"
             f"    @keyframes mpiType{idx} {{\n"
-            f"      0%, {t0}% {{ width: 0px; }}\n"
-            f"      {t1}%, 94% {{ width: 352px; }}\n"
-            f"      98%, 100% {{ width: 0px; }}\n"
+            f"      0%, 40% {{ width: 352px; }}\n"
+            f"      41%, {t0}% {{ width: 0px; }}\n"
+            f"      {t1}%, 100% {{ width: 352px; }}\n"
             f"    }}"
         )
 

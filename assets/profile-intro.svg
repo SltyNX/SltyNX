@@ -6,29 +6,29 @@
   <style>
     .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace; }
     .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif; }
-    .piline0 { animation: piType0 12s steps(55, end) infinite; }
+    .piline0 { animation: piType0 22s steps(55, end) infinite; }
     @keyframes piType0 {
-      0%, 4% { width: 0px; }
-      14%, 94% { width: 832px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 832px; }
+      41%, 43% { width: 0px; }
+      49%, 100% { width: 832px; }
     }
-.piline1 { animation: piType1 12s steps(55, end) infinite; }
+.piline1 { animation: piType1 22s steps(55, end) infinite; }
     @keyframes piType1 {
-      0%, 18% { width: 0px; }
-      42%, 94% { width: 832px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 832px; }
+      41%, 50% { width: 0px; }
+      60%, 100% { width: 832px; }
     }
-.piline2 { animation: piType2 12s steps(55, end) infinite; }
+.piline2 { animation: piType2 22s steps(55, end) infinite; }
     @keyframes piType2 {
-      0%, 46% { width: 0px; }
-      68%, 94% { width: 832px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 832px; }
+      41%, 61% { width: 0px; }
+      69%, 100% { width: 832px; }
     }
-.piline3 { animation: piType3 12s steps(55, end) infinite; }
+.piline3 { animation: piType3 22s steps(55, end) infinite; }
     @keyframes piType3 {
-      0%, 68% { width: 0px; }
-      82%, 94% { width: 832px; }
-      98%, 100% { width: 0px; }
+      0%, 40% { width: 832px; }
+      41%, 69% { width: 0px; }
+      75%, 100% { width: 832px; }
     }
     .pi-cur { animation: piBlink 1s steps(2, start) infinite; }
     @keyframes piBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }

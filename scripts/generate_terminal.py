@@ -29,10 +29,10 @@ def build_profile_intro() -> str:
     w, h = 880, 190
 
     intro_lines = [
-        ("cmd", "$ cat profile_intro.txt", 64, 4, 14),
-        ("pri", "> Just a guy who sleeps a lot, codes a little, and dreams of building something cool.", 98, 18, 42),
-        ("sec", "> Currently a noob developer. Learning as I go, breaking things occasionally,", 130, 46, 68),
-        ("sec", "  and trying to understand how everything works.", 154, 68, 82),
+        ("cmd", "$ cat profile_intro.txt", 64, 43, 49),
+        ("pri", "> Just a guy who sleeps a lot, codes a little, and dreams of building something cool.", 98, 50, 60),
+        ("sec", "> Currently a noob developer. Learning as I go, breaking things occasionally,", 130, 61, 69),
+        ("sec", "  and trying to understand how everything works.", 154, 69, 75),
     ]
 
     clips: list[str] = []
@@ -50,11 +50,11 @@ def build_profile_intro() -> str:
             f'<text x="28" y="{y}" clip-path="url(#piClip{idx})" class="mono" font-size="13" fill="{col}" xml:space="preserve">{escape(txt)}</text>'
         )
         css_rules.append(
-            f".piline{idx} {{ animation: piType{idx} 12s steps(55, end) infinite; }}\n"
+            f".piline{idx} {{ animation: piType{idx} 22s steps(55, end) infinite; }}\n"
             f"    @keyframes piType{idx} {{\n"
-            f"      0%, {t0}% {{ width: 0px; }}\n"
-            f"      {t1}%, 94% {{ width: 832px; }}\n"
-            f"      98%, 100% {{ width: 0px; }}\n"
+            f"      0%, 40% {{ width: 832px; }}\n"
+            f"      41%, {t0}% {{ width: 0px; }}\n"
+            f"      {t1}%, 100% {{ width: 832px; }}\n"
             f"    }}"
         )
 
