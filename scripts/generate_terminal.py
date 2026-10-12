@@ -137,37 +137,50 @@ def build_current_project() -> str:
 
 def build_skills_learning() -> str:
     """
-    Builds assets/skills-learning.svg (880x215) — Section 10:
+    Builds assets/skills-learning.svg (880x340) — Section 10:
     Communicates honestly that SltyNX is a beginner currently learning step by step.
-    No fake proficiency percentages or circular skill meters.
+    Uses a spacious 2-column x 4-row grid (408px wide cards) with per-card clipPaths
+    so text never overflows on desktop or mobile screens.
     """
-    w, h = 880, 215
+    w, h = 880, 340
     badges: list[str] = []
+    clips: list[str] = []
 
-    # 2 rows x 4 columns of compact outlined badges
-    col_w = 200
+    # 4 rows x 2 columns of spacious outlined cards (408px wide each)
+    col_w = 408
     row_h = 54
-    gap_x = 12
-    gap_y = 12
-    start_x = 22
-    start_y = 86
+    gap_x = 16
+    gap_y = 10
+    start_x = 24
+    start_y = 84
 
     for idx, (title, desc, tag) in enumerate(C.LEARNING_ITEMS):
-        r = idx // 4
-        c = idx % 4
+        r = idx // 2
+        c = idx % 2
         bx = start_x + c * (col_w + gap_x)
         by = start_y + r * (row_h + gap_y)
+        clips.append(
+            f'<clipPath id="skCardClip{idx}">'
+            f'<rect x="2" y="2" width="{col_w - 4}" height="{row_h - 4}" rx="4"/>'
+            f'</clipPath>'
+        )
         badges.append(
             f'<g transform="translate({bx}, {by})">'
             f'<rect x="0" y="0" width="{col_w}" height="{row_h}" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
-            f'<text x="12" y="21" class="mono" font-size="11.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(title)}</text>'
-            f'<text x="{col_w - 10}" y="20" text-anchor="end" class="mono" font-size="9.5" fill="{C.TEXT_MUTED}">[{escape(tag)}]</text>'
-            f'<text x="12" y="39" class="sans" font-size="10.5" fill="{C.TEXT_SECONDARY}">{escape(desc)}</text>'
+            f'<g clip-path="url(#skCardClip{idx})">'
+            f'<text x="14" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(title)}</text>'
+            f'<rect x="{col_w - 86}" y="7" width="74" height="19" rx="3" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+            f'<text x="{col_w - 49}" y="20" text-anchor="middle" class="mono" font-size="10" fill="{C.TEXT_SECONDARY}">{escape(tag)}</text>'
+            f'<text x="14" y="42" class="sans" font-size="12" fill="{C.TEXT_SECONDARY}">{escape(desc)}</text>'
+            f'</g>'
             f'</g>'
         )
 
     return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Skills and Tools — Beginner, Learning in Progress">
   <title>{escape(C.SKILLS_HEADING)} — {escape(C.SKILLS_LABEL)}</title>
+  <defs>
+    {"".join(clips)}
+  </defs>
   <style>
     .mono {{ font-family: {C.FONT_MONO}; }}
     .sans {{ font-family: {C.FONT_SANS}; }}
@@ -189,7 +202,7 @@ def build_skills_learning() -> str:
   <text x="24" y="64" class="sans" font-size="13.5" fill="{C.TEXT_SECONDARY}">&#8220;{escape(C.SKILLS_MESSAGE)}&#8221;</text>
   <text x="{w - 24}" y="64" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">// no fake proficiency meters</text>
 
-  <!-- 8 Compact Outlined Learning Inventory Badges -->
+  <!-- 8 Spacious Outlined Learning Inventory Cards (2 cols x 4 rows) -->
   {"".join(badges)}
 </svg>
 '''
@@ -357,23 +370,30 @@ def build_ai_assistance() -> str:
 
     # Three AI service cards across top-left (x=24..510, y=50..112)
     service_cards: list[str] = []
+    ai_clips: list[str] = []
     for idx, (name, sub) in enumerate(C.AI_SERVICES):
         sx = 24 + idx * 164
         sy = 50
+        ai_clips.append(
+            f'<clipPath id="aiCardClip{idx}"><rect x="{sx + 2}" y="{sy + 2}" width="148" height="48" rx="4"/></clipPath>'
+            f'<clipPath id="aiPopClip{idx}"><rect x="{sx + 2}" y="116" width="148" height="24" rx="3"/></clipPath>'
+        )
         # Distinct neutral geometric symbol per service (asterisk, 4-point star, hex node)
         if idx == 0:
-            icon = f'<path d="M {sx+22} {sy+18} V {sy+34} M {sx+14} {sy+26} H {sx+30} M {sx+16} {sy+20} L {sx+28} {sy+32} M {sx+28} {sy+20} L {sx+16} {sy+32}" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5"/>'
+            icon = f'<path d="M {sx+19} {sy+18} V {sy+34} M {sx+11} {sy+26} H {sx+27} M {sx+13} {sy+20} L {sx+25} {sy+32} M {sx+25} {sy+20} L {sx+13} {sy+32}" stroke="{C.TEXT_PRIMARY}" stroke-width="1.5"/>'
         elif idx == 1:
-            icon = f'<polygon points="{sx+22},{sy+16} {sx+25},{sy+23} {sx+32},{sy+26} {sx+25},{sy+29} {sx+22},{sy+36} {sx+19},{sy+29} {sx+12},{sy+26} {sx+19},{sy+23}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4"/>'
+            icon = f'<polygon points="{sx+19},{sy+16} {sx+22},{sy+23} {sx+29},{sy+26} {sx+22},{sy+29} {sx+19},{sy+36} {sx+16},{sy+29} {sx+9},{sy+26} {sx+16},{sy+23}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4"/>'
         else:
-            icon = f'<polygon points="{sx+22},{sy+17} {sx+30},{sy+21.5} {sx+30},{sy+30.5} {sx+22},{sy+35} {sx+14},{sy+30.5} {sx+14},{sy+21.5}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4"/>'
+            icon = f'<polygon points="{sx+19},{sy+17} {sx+27},{sy+21.5} {sx+27},{sy+30.5} {sx+19},{sy+35} {sx+11},{sy+30.5} {sx+11},{sy+21.5}" fill="none" stroke="{C.TEXT_PRIMARY}" stroke-width="1.4"/>'
 
         service_cards.append(
             f'<g class="ai-node n{idx}">'
             f'<rect x="{sx}" y="{sy}" width="152" height="52" rx="5" fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1"/>'
+            f'<g clip-path="url(#aiCardClip{idx})">'
             f'{icon}'
-            f'<text x="{sx + 40}" y="{sy + 23}" class="sans" font-size="12" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(name)}</text>'
-            f'<text x="{sx + 40}" y="{sy + 39}" class="mono" font-size="9.5" fill="{C.TEXT_MUTED}">{escape(sub)}</text>'
+            f'<text x="{sx + 34}" y="{sy + 23}" class="sans" font-size="11.5" font-weight="600" fill="{C.TEXT_PRIMARY}">{escape(name)}</text>'
+            f'<text x="{sx + 34}" y="{sy + 39}" class="mono" font-size="9" fill="{C.TEXT_MUTED}">{escape(sub)}</text>'
+            f'</g>'
             f'</g>'
         )
 
@@ -385,13 +405,18 @@ def build_ai_assistance() -> str:
         popups_svg.append(
             f'<g class="popup pop{idx}">'
             f'<rect x="{px}" y="{py}" width="152" height="28" rx="4" fill="{C.BG_ELEVATED}" stroke="{C.TEXT_SECONDARY}" stroke-width="1" stroke-dasharray="3 2"/>'
-            f'<rect x="{px + 10}" y="{py + 11}" width="5" height="5" fill="{C.TEXT_PRIMARY}"/>'
-            f'<text x="{px + 22}" y="{py + 18}" class="mono" font-size="10.5" fill="{C.TEXT_PRIMARY}">{escape(ptext)}</text>'
+            f'<g clip-path="url(#aiPopClip{idx})">'
+            f'<rect x="{px + 9}" y="{py + 11}" width="5" height="5" fill="{C.TEXT_PRIMARY}"/>'
+            f'<text x="{px + 19}" y="{py + 18}" class="mono" font-size="9.5" fill="{C.TEXT_PRIMARY}">{escape(ptext)}</text>'
+            f'</g>'
             f'</g>'
         )
 
     return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Asking AI for Help and Implementing Solution (Scenes C and D)">
   <title>Terminal Session — Asking AI for Help &amp; Implementing Solution (Scenes C &amp; D)</title>
+  <defs>
+    {"".join(ai_clips)}
+  </defs>
   <style>
     .mono {{ font-family: {C.FONT_MONO}; }}
     .sans {{ font-family: {C.FONT_SANS}; }}

@@ -76,7 +76,7 @@
 
 > Not skilled yet, but I'm building it step by step.
 
-`Android (Exploring)` &nbsp;&bull;&nbsp; `Kotlin / Java Basics (Learning)` &nbsp;&bull;&nbsp; `Python Scripting (Learning)` &nbsp;&bull;&nbsp; `Git & GitHub (Using)` &nbsp;&bull;&nbsp; `JSON & Configs (Using)` &nbsp;&bull;&nbsp; `Markdown & SVG (Exploring)`
+`Android (Exploring)` • `Kotlin / Java Basics (Learning)` • `Python Scripting (Learning)` • `Git & GitHub (Using)` • `JSON & Configs (Using)` • `Markdown & SVG (Exploring)`
 
 ---
 
