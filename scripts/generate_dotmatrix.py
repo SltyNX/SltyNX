@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 Generates assets/dotmatrix-name.svg:
-Deterministic square-dot-matrix name simulator for SLYTNX (Section 6).
+Deterministic square-dot-matrix name simulator for SLYTNX (Section 6),
+optimized for mobile & desktop legibility (640x240 viewBox).
 """
 from __future__ import annotations
 import pathlib
@@ -11,7 +12,7 @@ import config as C
 
 def build_dotmatrix_name() -> str:
     """
-    Builds assets/dotmatrix-name.svg (880x235):
+    Builds assets/dotmatrix-name.svg (640x240):
     Animation sequence (11s cycle):
       1. Sparse square-dot grid appears on a pure #000000 background (0.0s - 0.8s).
       2. Individual dots illuminate in a controlled sequence across columns (0.8s - 2.2s).
@@ -21,14 +22,14 @@ def build_dotmatrix_name() -> str:
       6. A subtle horizontal scan sweeps across the completed logo (5.4s - 6.8s).
       7. Pauses before resetting cleanly (9.4s - 11.0s).
     """
-    w, h = 880, 235
+    w, h = 640, 240
 
-    dot_size = 5.2
-    pitch = 7.6
+    dot_size = 5.4
+    pitch = 7.8
 
     # Wordmark geometry: 6 letters, each 9 cols wide, 3 cols gap between letters
-    # Total cols for wordmark = 6 * 9 + 5 * 3 = 54 + 15 = 69 cols
-    # Total width = 69 * 7.6 = 524.4px -> start_x = (880 - 524.4) / 2 = 177.8
+    # Total cols for wordmark = 6 * 9 + 5 * 3 = 69 cols
+    # Total width = 69 * 7.8 = 538.2px -> start_x = (640 - 538.2) / 2 = 50.9
     total_cols = 69
     word_start_x = (w - (total_cols * pitch)) / 2.0
     word_start_y = 118.0
@@ -37,11 +38,11 @@ def build_dotmatrix_name() -> str:
     bg_rects: list[str] = []
     for r in range(-9, 13, 2):
         gy = word_start_y + r * pitch
-        if gy < 42 or gy > h - 22:
+        if gy < 44 or gy > h - 28:
             continue
-        for c in range(-4, total_cols + 4, 2):
+        for c in range(-2, total_cols + 3, 2):
             gx = word_start_x + c * pitch
-            if gx < 32 or gx > w - 36:
+            if gx < 20 or gx > w - 24:
                 continue
             bg_rects.append(f'<rect x="{gx:.1f}" y="{gy:.1f}" width="{dot_size:.1f}" height="{dot_size:.1f}"/>')
 
@@ -71,12 +72,11 @@ def build_dotmatrix_name() -> str:
 
     # Emblem above wordmark: dot-matrix points + crisp geometric triple-triangle lock-in
     emblem_dots: list[str] = []
-    emb_rows = len(C.DOT_EMBLEM)
     emb_cols = len(C.DOT_EMBLEM[0])
-    emb_pitch = 4.6
-    emb_dot = 3.2
+    emb_pitch = 4.8
+    emb_dot = 3.4
     emb_start_x = (w - emb_cols * emb_pitch) / 2.0
-    emb_start_y = 40.0
+    emb_start_y = 42.0
     for r, row in enumerate(C.DOT_EMBLEM):
         for c, cell in enumerate(row):
             if cell == "#":
@@ -87,7 +87,7 @@ def build_dotmatrix_name() -> str:
                 )
 
     # Geometric wireframe overlay that locks over the emblem dots once formed
-    emblem_vector = C.render_brand_emblem_svg(cx=w / 2.0, top_y=38.0, scale=0.74)
+    emblem_vector = C.render_brand_emblem_svg(cx=w / 2.0, top_y=40.0, scale=0.78)
 
     # Generate CSS rules for the 12 bands (staggered activation between 6% and 26% of 11s loop)
     band_css: list[str] = []
@@ -147,12 +147,13 @@ def build_dotmatrix_name() -> str:
 
   <!-- Outer Frame -->
   <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
-  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1.2"/>
 
-  <!-- Subtle Header Metadata -->
-  <text x="24" y="24" class="mono" font-size="11" fill="{C.TEXT_MUTED}">matrix://sltynx-display [69x11 square-dot array]</text>
-  <text x="{w - 24}" y="24" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">mode: dot-convergence</text>
-  <line x1="1" y1="32" x2="{w - 1}" y2="32" stroke="{C.BORDER_SUBTLE}" stroke-width="1"/>
+  <!-- Header Metadata -->
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <text x="18" y="22" class="mono" font-size="13" fill="{C.TEXT_SECONDARY}">matrix://sltynx [69x11 dot-array]</text>
+  <text x="{w - 18}" y="22" text-anchor="end" class="mono" font-size="13" fill="{C.TEXT_MUTED}">mode: dot-convergence</text>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
 
   <!-- 1. Sparse Background Dot Field -->
   <g class="grid-bg">{"".join(bg_rects)}</g>
@@ -165,10 +166,10 @@ def build_dotmatrix_name() -> str:
   {"".join(band_groups)}
 
   <!-- 4. Subtle Horizontal Scanline Pass -->
-  <rect x="165" y="38" width="18" height="172" fill="{C.TEXT_PRIMARY}" class="scan-bar"/>
+  <rect x="44" y="40" width="18" height="170" fill="{C.TEXT_PRIMARY}" class="scan-bar"/>
 
   <!-- Bottom Caption -->
-  <text x="{w / 2:.0f}" y="222" text-anchor="middle" class="mono" font-size="11" fill="{C.TEXT_SECONDARY}" letter-spacing="2">SLYTNX // SLEEPING CORE</text>
+  <text x="{w / 2:.0f}" y="226" text-anchor="middle" class="mono" font-size="14" font-weight="700" fill="{C.TEXT_SECONDARY}" letter-spacing="2.5">SLYTNX // SLEEPING CORE</text>
 </svg>
 '''
 

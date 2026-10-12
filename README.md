@@ -18,6 +18,10 @@
   <img src="./assets/dotmatrix-name.svg" width="100%" alt="SLYTNX Dot-Matrix Name Simulator" />
 </picture>
 
+<br /><br />
+
+<img src="https://api.visitorbadge.io/api/VisitorHit?user=SltyNX&repo=SltyNX&label=PROFILE%20VIEWS&countColor=%23303030&labelColor=%23080808&style=for-the-badge" alt="Profile views" />
+
 </div>
 
 ---
@@ -41,7 +45,7 @@
 <!-- 3. TELEGRAM CONTACT BUTTON                                              -->
 <!-- ======================================================================= -->
 <a href="https://t.me/SltyNX_X">
-  <img src="./assets/telegram-button.svg" width="380" alt="Message me on Telegram (@SltyNX_X)" />
+  <img src="./assets/telegram-button.svg" width="340" alt="Message me on Telegram (@SltyNX_X)" />
 </a>
 
 </div>

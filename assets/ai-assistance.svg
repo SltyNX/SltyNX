@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 285" width="880" height="285" role="img" aria-label="Asking AI for Help and Implementing Solution (Scenes C and D)">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 436" width="640" height="436" role="img" aria-label="Asking AI for Help and Implementing Solution (Scenes C and D)">
   <title>Terminal Session — Asking AI for Help &amp; Implementing Solution (Scenes C &amp; D)</title>
   <defs>
-    <clipPath id="aiCardClip0"><rect x="26" y="52" width="148" height="48" rx="4"/></clipPath><clipPath id="aiPopClip0"><rect x="26" y="116" width="148" height="24" rx="3"/></clipPath><clipPath id="aiCardClip1"><rect x="190" y="52" width="148" height="48" rx="4"/></clipPath><clipPath id="aiPopClip1"><rect x="190" y="116" width="148" height="24" rx="3"/></clipPath><clipPath id="aiCardClip2"><rect x="354" y="52" width="148" height="48" rx="4"/></clipPath><clipPath id="aiPopClip2"><rect x="354" y="116" width="148" height="24" rx="3"/></clipPath>
+    <clipPath id="aiCardClip0"><rect x="22" y="52" width="188" height="54" rx="5"/></clipPath><clipPath id="aiPopClip0"><rect x="22" y="118" width="188" height="28" rx="4"/></clipPath><clipPath id="aiCardClip1"><rect x="226" y="52" width="188" height="54" rx="5"/></clipPath><clipPath id="aiPopClip1"><rect x="226" y="118" width="188" height="28" rx="4"/></clipPath><clipPath id="aiCardClip2"><rect x="430" y="52" width="188" height="54" rx="5"/></clipPath><clipPath id="aiPopClip2"><rect x="430" y="118" width="188" height="28" rx="4"/></clipPath>
   </defs>
   <style>
     .mono { font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace; }
@@ -13,17 +13,17 @@
     @keyframes popSeq0 {
       0%, 5% { opacity: 0; transform: translateY(-4px); }
       10%, 34% { opacity: 1; transform: translateY(0px); }
-      40%, 100% { opacity: 0.25; transform: translateY(0px); }
+      40%, 100% { opacity: 0.28; transform: translateY(0px); }
     }
     @keyframes popSeq1 {
       0%, 22% { opacity: 0; transform: translateY(-4px); }
       28%, 54% { opacity: 1; transform: translateY(0px); }
-      60%, 100% { opacity: 0.25; transform: translateY(0px); }
+      60%, 100% { opacity: 0.28; transform: translateY(0px); }
     }
     @keyframes popSeq2 {
       0%, 40% { opacity: 0; transform: translateY(-4px); }
       46%, 76% { opacity: 1; transform: translateY(0px); }
-      82%, 100% { opacity: 0.25; transform: translateY(0px); }
+      82%, 100% { opacity: 0.28; transform: translateY(0px); }
     }
 
     .resp0 { animation: rLine0 12s steps(24, end) infinite; }
@@ -41,68 +41,53 @@
   </style>
 
   <!-- Outer Frame -->
-  <rect x="0" y="0" width="880" height="285" rx="8" fill="#000000"/>
-  <rect x="1" y="1" width="878" height="283" rx="7" fill="none" stroke="#303030" stroke-width="1"/>
+  <rect x="0" y="0" width="640" height="436" rx="8" fill="#000000"/>
+  <rect x="1" y="1" width="638" height="434" rx="7" fill="none" stroke="#303030" stroke-width="1.2"/>
 
   <!-- Top Terminal Header -->
-  <rect x="1.5" y="1.5" width="877" height="32" rx="6" fill="#080808"/>
-  <line x1="1" y1="34" x2="879" y2="34" stroke="#303030" stroke-width="1"/>
-  <circle cx="20" cy="17.5" r="4" fill="#383838"/>
-  <circle cx="34" cy="17.5" r="4" fill="#383838"/>
-  <circle cx="48" cy="17.5" r="4" fill="#383838"/>
-  <text x="68" y="22" class="mono" font-size="11.5" fill="#A6A6A6">sltynx@desk: ~/projects (scene 02 // asking AI for a hint)</text>
+  <rect x="1.5" y="1.5" width="637" height="36" rx="6" fill="#080808"/>
+  <line x1="1" y1="38" x2="639" y2="38" stroke="#303030" stroke-width="1"/>
+  <circle cx="22" cy="19.5" r="4.5" fill="#383838"/>
+  <circle cx="38" cy="19.5" r="4.5" fill="#383838"/>
+  <circle cx="54" cy="19.5" r="4.5" fill="#383838"/>
+  <text x="74" y="24" class="mono" font-size="13.5" fill="#A6A6A6">sltynx@desk: ~/projects (scene 02 // asking AI for a hint)</text>
 
-  <!-- =================================================================== -->
-  <!-- SCENE C (LEFT TOP): Three AI Reference Nodes & Dot-Matrix Popups    -->
-  <!-- =================================================================== -->
-  <g class="ai-node n0"><rect x="24" y="50" width="152" height="52" rx="5" fill="#080808" stroke="#303030" stroke-width="1"/><g clip-path="url(#aiCardClip0)"><path d="M 43 68 V 84 M 35 76 H 51 M 37 70 L 49 82 M 49 70 L 37 82" stroke="#F2F2F2" stroke-width="1.5"/><text x="58" y="73" class="sans" font-size="11.5" font-weight="600" fill="#F2F2F2">Claude — Sonnet</text><text x="58" y="89" class="mono" font-size="9" fill="#6E6E6E">hint-node // 01</text></g></g><g class="ai-node n1"><rect x="188" y="50" width="152" height="52" rx="5" fill="#080808" stroke="#303030" stroke-width="1"/><g clip-path="url(#aiCardClip1)"><polygon points="207,66 210,73 217,76 210,79 207,86 204,79 197,76 204,73" fill="none" stroke="#F2F2F2" stroke-width="1.4"/><text x="222" y="73" class="sans" font-size="11.5" font-weight="600" fill="#F2F2F2">Gemini</text><text x="222" y="89" class="mono" font-size="9" fill="#6E6E6E">hint-node // 02</text></g></g><g class="ai-node n2"><rect x="352" y="50" width="152" height="52" rx="5" fill="#080808" stroke="#303030" stroke-width="1"/><g clip-path="url(#aiCardClip2)"><polygon points="371,67 379,71.5 379,80.5 371,85 363,80.5 363,71.5" fill="none" stroke="#F2F2F2" stroke-width="1.4"/><text x="386" y="73" class="sans" font-size="11.5" font-weight="600" fill="#F2F2F2">ChatGPT</text><text x="386" y="89" class="mono" font-size="9" fill="#6E6E6E">hint-node // 03</text></g></g>
-  <g class="popup pop0"><rect x="24" y="114" width="152" height="28" rx="4" fill="#0D0D0D" stroke="#A6A6A6" stroke-width="1" stroke-dasharray="3 2"/><g clip-path="url(#aiPopClip0)"><rect x="33" y="125" width="5" height="5" fill="#F2F2F2"/><text x="43" y="132" class="mono" font-size="9.5" fill="#F2F2F2">asking for a hint...</text></g></g><g class="popup pop1"><rect x="188" y="114" width="152" height="28" rx="4" fill="#0D0D0D" stroke="#A6A6A6" stroke-width="1" stroke-dasharray="3 2"/><g clip-path="url(#aiPopClip1)"><rect x="197" y="125" width="5" height="5" fill="#F2F2F2"/><text x="207" y="132" class="mono" font-size="9.5" fill="#F2F2F2">idea detected?</text></g></g><g class="popup pop2"><rect x="352" y="114" width="152" height="28" rx="4" fill="#0D0D0D" stroke="#A6A6A6" stroke-width="1" stroke-dasharray="3 2"/><g clip-path="url(#aiPopClip2)"><rect x="361" y="125" width="5" height="5" fill="#F2F2F2"/><text x="371" y="132" class="mono" font-size="9.5" fill="#F2F2F2">trying again...</text></g></g>
+  <!-- SCENE C (TOP): Three AI Reference Nodes & Popups -->
+  <g class="ai-node n0"><rect x="20" y="50" width="192" height="58" rx="6" fill="#080808" stroke="#303030" stroke-width="1.2"/><g clip-path="url(#aiCardClip0)"><path d="M 42 70 V 88 M 33 79 H 51 M 35 72 L 49 86 M 49 72 L 35 86" stroke="#F2F2F2" stroke-width="1.7"/><text x="60" y="75" class="sans" font-size="14.5" font-weight="700" fill="#F2F2F2">Claude — Sonnet</text><text x="60" y="94" class="mono" font-size="11.5" fill="#6E6E6E">hint-node // 01</text></g></g><g class="ai-node n1"><rect x="224" y="50" width="192" height="58" rx="6" fill="#080808" stroke="#303030" stroke-width="1.2"/><g clip-path="url(#aiCardClip1)"><polygon points="246,68 249.5,76 257.5,79 249.5,82 246,90 242.5,82 234.5,79 242.5,76" fill="none" stroke="#F2F2F2" stroke-width="1.5"/><text x="264" y="75" class="sans" font-size="14.5" font-weight="700" fill="#F2F2F2">Gemini</text><text x="264" y="94" class="mono" font-size="11.5" fill="#6E6E6E">hint-node // 02</text></g></g><g class="ai-node n2"><rect x="428" y="50" width="192" height="58" rx="6" fill="#080808" stroke="#303030" stroke-width="1.2"/><g clip-path="url(#aiCardClip2)"><polygon points="450,69 459,74 459,84 450,89 441,84 441,74" fill="none" stroke="#F2F2F2" stroke-width="1.5"/><text x="468" y="75" class="sans" font-size="14.5" font-weight="700" fill="#F2F2F2">ChatGPT</text><text x="468" y="94" class="mono" font-size="11.5" fill="#6E6E6E">hint-node // 03</text></g></g>
+  <g class="popup pop0"><rect x="20" y="116" width="192" height="32" rx="5" fill="#0D0D0D" stroke="#A6A6A6" stroke-width="1.1" stroke-dasharray="3 2"/><g clip-path="url(#aiPopClip0)"><rect x="32" y="129" width="6" height="6" fill="#F2F2F2"/><text x="44" y="137" class="mono" font-size="12.5" font-weight="600" fill="#F2F2F2">asking for a hint...</text></g></g><g class="popup pop1"><rect x="224" y="116" width="192" height="32" rx="5" fill="#0D0D0D" stroke="#A6A6A6" stroke-width="1.1" stroke-dasharray="3 2"/><g clip-path="url(#aiPopClip1)"><rect x="236" y="129" width="6" height="6" fill="#F2F2F2"/><text x="248" y="137" class="mono" font-size="12.5" font-weight="600" fill="#F2F2F2">idea detected?</text></g></g><g class="popup pop2"><rect x="428" y="116" width="192" height="32" rx="5" fill="#0D0D0D" stroke="#A6A6A6" stroke-width="1.1" stroke-dasharray="3 2"/><g clip-path="url(#aiPopClip2)"><rect x="440" y="129" width="6" height="6" fill="#F2F2F2"/><text x="452" y="137" class="mono" font-size="12.5" font-weight="600" fill="#F2F2F2">trying again...</text></g></g>
 
-  <!-- =================================================================== -->
-  <!-- SCENE D (LEFT BOTTOM): Terminal Assistance Output                   -->
-  <!-- =================================================================== -->
-  <rect x="24" y="154" width="480" height="110" rx="5" fill="#080808" stroke="#303030" stroke-width="1"/>
-  <text x="38" y="182" class="mono resp0" font-size="13.5" fill="#4ADE80">&gt; hint received</text>
-  <text x="38" y="210" class="mono resp1" font-size="13.5" fill="#F2F2F2">&gt; trying to understand...</text>
-  <text x="38" y="238" class="mono resp2" font-size="13.5" fill="#A6A6A6">&gt; implementing solution...</text>
+  <!-- SCENE D (MIDDLE): Terminal Assistance Output -->
+  <rect x="20" y="160" width="600" height="106" rx="6" fill="#080808" stroke="#303030" stroke-width="1.2"/>
+  <text x="36" y="189" class="mono resp0" font-size="16" font-weight="600" fill="#4ADE80">&gt; hint received</text>
+  <text x="36" y="218" class="mono resp1" font-size="16" fill="#F2F2F2">&gt; trying to understand...</text>
+  <text x="36" y="247" class="mono resp2" font-size="16" fill="#A6A6A6">&gt; implementing solution...</text>
 
-  <!-- Vertical Divider -->
-  <line x1="524" y1="34" x2="524" y2="284" stroke="#303030" stroke-width="1"/>
+  <!-- SCENE D (BOTTOM): Mascot Focusing & Typing at Laptop -->
+  <rect x="20" y="278" width="600" height="140" rx="6" fill="#080808" stroke="#303030" stroke-width="1.2"/>
+  <line x1="40" y1="386" x2="600" y2="386" stroke="#303030" stroke-width="1.5"/>
 
-  <!-- =================================================================== -->
-  <!-- SCENE D (RIGHT): Mascot Focusing & Typing at Laptop                 -->
-  <!-- =================================================================== -->
-  <rect x="544" y="50" width="312" height="214" rx="6" fill="#080808" stroke="#303030" stroke-width="1"/>
-  <line x1="556" y1="224" x2="844" y2="224" stroke="#303030" stroke-width="1.5"/>
-
-  <!-- Focused Mascot Leaning Forward Slightly -->
-  <g transform="translate(692, 160)">
-    <!-- Torso leaning in -->
-    <rect x="-24" y="22" width="48" height="42" rx="8" fill="#242424" stroke="#A6A6A6" stroke-width="1.2"/>
-    <!-- Head -->
-    <circle cx="0" cy="-8" r="26" fill="#E5E5E5" stroke="#303030" stroke-width="1.2"/>
-    <path d="M -27 -8 C -27 -42, 27 -42, 27 -8 C 21 -22, 10 -18, 2 -12 L -4 -22 L -12 -12 L -20 -20 Z" fill="#1A1A1A" stroke="#6E6E6E" stroke-width="1.1"/>
-    <!-- Focused Determined Eyes & Brows -->
-    <line x1="-13" y1="-8" x2="-4" y2="-6" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-    <line x1="4" y1="-6" x2="13" y2="-8" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="-8" cy="-3" r="2.2" fill="#000000"/>
-    <circle cx="8" cy="-3" r="2.2" fill="#000000"/>
-    <!-- Small Focus Marks Around Head -->
-    <g class="focus-badge" stroke="#F2F2F2" stroke-width="1.4" stroke-linecap="round">
-      <line x1="-38" y1="-22" x2="-32" y2="-18"/>
-      <line x1="-40" y1="-12" x2="-33" y2="-11"/>
-      <line x1="38" y1="-22" x2="32" y2="-18"/>
-      <line x1="40" y1="-12" x2="33" y2="-11"/>
+  <g transform="translate(230, 326)">
+    <rect x="-24" y="22" width="48" height="38" rx="8" fill="#242424" stroke="#A6A6A6" stroke-width="1.2"/>
+    <circle cx="0" cy="-6" r="25" fill="#E5E5E5" stroke="#303030" stroke-width="1.2"/>
+    <path d="M -25 -6 C -25 -38, 25 -38, 25 -6 C 19 -20, 9 -16, 2 -10 L -4 -20 L -12 -10 L -19 -18 Z" fill="#1A1A1A" stroke="#6E6E6E" stroke-width="1.1"/>
+    <line x1="-12" y1="-6" x2="-4" y2="-4" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+    <line x1="4" y1="-4" x2="12" y2="-6" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="-8" cy="-1" r="2.2" fill="#000000"/>
+    <circle cx="8" cy="-1" r="2.2" fill="#000000"/>
+    <g class="focus-badge" stroke="#F2F2F2" stroke-width="1.5" stroke-linecap="round">
+      <line x1="-36" y1="-20" x2="-30" y2="-16"/>
+      <line x1="-38" y1="-10" x2="-31" y2="-9"/>
+      <line x1="36" y1="-20" x2="30" y2="-16"/>
+      <line x1="38" y1="-10" x2="31" y2="-9"/>
     </g>
   </g>
 
-  <!-- Laptop on Desk -->
-  <polygon points="628,186 682,186 690,222 636,222" fill="#161616" stroke="#F2F2F2" stroke-width="1.3"/>
-  <rect x="632" y="220" width="76" height="4" rx="1.5" fill="#A6A6A6"/>
+  <polygon points="166,350 220,350 228,384 174,384" fill="#161616" stroke="#F2F2F2" stroke-width="1.3"/>
+  <rect x="170" y="382" width="76" height="4" rx="1.5" fill="#A6A6A6"/>
 
-  <!-- Status Badge Above Mascot -->
-  <rect x="598" y="66" width="204" height="26" rx="4" fill="#000000" stroke="#303030" stroke-width="1" class="focus-badge"/>
-  <text x="700" y="83" text-anchor="middle" class="mono focus-badge" font-size="11" fill="#F2F2F2">focus: reading the docs...</text>
+  <!-- Status Badge Next to Focused Mascot -->
+  <rect x="304" y="314" width="268" height="36" rx="5" fill="#000000" stroke="#303030" stroke-width="1.2" class="focus-badge"/>
+  <text x="438" y="337" text-anchor="middle" class="mono focus-badge" font-size="14" font-weight="600" fill="#F2F2F2">focus: reading the docs...</text>
 
-  <text x="700" y="248" text-anchor="middle" class="mono" font-size="10.5" fill="#6E6E6E">status: actually making sense now</text>
+  <text x="320" y="407" text-anchor="middle" class="mono" font-size="13" fill="#6E6E6E">status: actually making sense now</text>
 </svg>
