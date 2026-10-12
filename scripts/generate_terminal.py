@@ -826,7 +826,7 @@ def build_funny_quote() -> str:
     Uses the confused mascot from 31595634885785270.jpg (confused-mascot.jpg),
     adds 2-3 hand-drawn question marks with a subtle pop, tiny thoughtful head tilt,
     and restrained speech bubble displaying:
-    "When I say Ehh, ehhh, ehhhh... like for the three time, don't give up on me bro, I'm trying to understand it for real."
+    "When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real."
     """
     w, h = 880, 230
     confused_b64 = C.get_asset_base64("confused-mascot.jpg")
@@ -838,7 +838,7 @@ def build_funny_quote() -> str:
             f'clip-path="url(#confusedClip)"/>'
         )
 
-    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Trying to Understand: When I say Ehh, ehhh, ehhhh... like for the three time, don't give up on me bro, I'm trying to understand it for real.">
+    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Trying to Understand: When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real.">
   <title>Trying to Understand</title>
   <defs>
     <clipPath id="confusedClip">
@@ -922,7 +922,7 @@ def build_funny_quote() -> str:
           fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
 
     <text x="262" y="106" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_PRIMARY}">
-      &#8220;When I say Ehh, ehhh, ehhhh... like for the three time,
+      &#8220;When I say Ehh, ehhh, ehhhh... like for three time,
     </text>
     <text x="262" y="134" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_PRIMARY}">
       don&apos;t give up on me bro, I&apos;m trying to understand it for real.&#8221;
