@@ -12,17 +12,15 @@
 <br />
 
 <!-- ======================================================================= -->
-<!-- 2. DOT-MATRIX NAME SIMULATOR                                            -->
+<!-- 2. DOT-MATRIX NAME SIMULATOR & SMALL PROFILE VIEWS MONITOR              -->
 <!-- ======================================================================= -->
 <picture>
   <source media="(max-width: 768px)" srcset="./assets/mobile/dotmatrix-name.svg" />
   <source media="(prefers-reduced-motion: reduce)" srcset="./assets/sltynx-logo.svg" />
   <img src="./assets/dotmatrix-name.svg" width="100%" alt="SLYTNX Dot-Matrix Name Simulator" />
-</picture>
-
-<br /><br />
-
-<img src="https://api.visitorbadge.io/api/VisitorHit?user=SltyNX&repo=SltyNX&label=PROFILE%20VIEWS&countColor=%23303030&labelColor=%23080808&style=for-the-badge" alt="Profile views" />
+</picture><br />
+<kbd><img src="./assets/monitor-top.svg" width="188" height="22" alt="" /><br /><img src="https://api.visitorbadge.io/api/VisitorHit?user=SltyNX&repo=SltyNX&label=PROFILE%20VIEWS&countColor=%23303030&labelColor=%23080808&style=for-the-badge" width="188" alt="Profile views" /></kbd><br />
+<img src="./assets/monitor-stand.svg" width="204" height="28" alt="" />
 
 </div>
 

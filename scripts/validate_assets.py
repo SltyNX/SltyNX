@@ -26,6 +26,8 @@ REQUIRED_ASSETS = [
     "hero-fallback.png",
     "sltynx-logo.svg",
     "dotmatrix-name.svg",
+    "monitor-top.svg",
+    "monitor-stand.svg",
     "profile-avatar.png",
     "profile-intro.svg",
     "telegram-button.svg",

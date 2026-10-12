@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 204 28" width="204" height="28" role="img" aria-label="Monitor Stand">
+  <title>Monitor Stand</title>
+  <style>
+    .pwr-led { animation: pwrGlow 3s ease-in-out infinite; }
+    @keyframes pwrGlow { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+  </style>
+  <rect x="0" y="0" width="204" height="28" fill="#000000" fill-opacity="0"/>
+  <!-- Monitor Chin Bezel -->
+  <rect x="6" y="0" width="192" height="7" rx="2" fill="#080808" stroke="#303030" stroke-width="1"/>
+  <circle cx="186" cy="3.5" r="1.8" fill="#4ADE80" class="pwr-led"/>
+  <!-- Monitor Neck -->
+  <polygon points="84,7 120,7 126,20 78,20" fill="#080808" stroke="#303030" stroke-width="1"/>
+  <line x1="92" y1="11" x2="112" y2="11" stroke="#1E1E1E" stroke-width="1"/>
+  <line x1="90" y1="15" x2="114" y2="15" stroke="#1E1E1E" stroke-width="1"/>
+  <!-- Monitor Base Stand -->
+  <rect x="46" y="20" width="112" height="6" rx="3" fill="#0D0D0D" stroke="#303030" stroke-width="1.1"/>
+  <rect x="66" y="22" width="72" height="2" rx="1" fill="#000000"/>
+</svg>

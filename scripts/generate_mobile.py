@@ -261,20 +261,20 @@ def build_hero() -> str:
 
 def build_dotmatrix_name() -> str:
     """
-    Builds assets/mobile/dotmatrix-name.svg (380x196):
+    Builds assets/mobile/dotmatrix-name.svg (380x240):
     Native 380px width dot-matrix simulator for crisp 1:1 mobile display.
     """
-    w, h = 380, 196
+    w, h = 380, 240
     dot_size = 3.5
     pitch = 4.9
     total_cols = 69
     word_start_x = (w - (total_cols * pitch)) / 2.0
-    word_start_y = 98.0
+    word_start_y = 120.0
 
     bg_rects: list[str] = []
-    for r in range(-8, 12, 2):
+    for r in range(-11, 15, 2):
         gy = word_start_y + r * pitch
-        if gy < 40 or gy > h - 28:
+        if gy < 42 or gy > h - 32:
             continue
         for c in range(0, total_cols, 2):
             gx = word_start_x + c * pitch
@@ -302,7 +302,7 @@ def build_dotmatrix_name() -> str:
         for b_idx, rects in enumerate(bands)
     ]
 
-    emblem_vector = C.render_brand_emblem_svg(cx=w / 2.0, top_y=40.0, scale=0.66)
+    emblem_vector = C.render_brand_emblem_svg(cx=w / 2.0, top_y=50.0, scale=0.70)
 
     band_css: list[str] = []
     for b_idx in range(12):
@@ -347,7 +347,7 @@ def build_dotmatrix_name() -> str:
   <g class="emblem-vec">{emblem_vector}</g>
   {"".join(band_groups)}
 
-  <text x="{w / 2:.0f}" y="182" text-anchor="middle" class="mono" font-size="13.5" font-weight="700" fill="{C.TEXT_SECONDARY}" letter-spacing="2">SLYTNX // SLEEPING CORE</text>
+  <text x="{w / 2:.0f}" y="220" text-anchor="middle" class="mono" font-size="13.5" font-weight="700" fill="{C.TEXT_SECONDARY}" letter-spacing="2">SLYTNX // SLEEPING CORE</text>
 </svg>
 '''
 
