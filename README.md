@@ -149,8 +149,6 @@ $ start-project
   <img src="./assets/funny-quote.svg" width="100%" alt="Confused mascot saying: When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real." />
 </div>
 
-> "When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real."
-
 ---
 
 <div align="center">
