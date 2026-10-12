@@ -44,10 +44,6 @@
   <img src="./assets/telegram-button.svg" width="380" alt="Message me on Telegram (@SltyNX_X)" />
 </a>
 
-<p>
-  <sub>Direct contact: <a href="https://t.me/SltyNX_X"><strong>Message me on Telegram</strong></a> (<code>@SltyNX_X</code>)</sub>
-</p>
-
 </div>
 
 ---
