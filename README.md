@@ -4,8 +4,8 @@
 <!-- 1. HERO BANNER — SLEEP, CODE, REPEAT                                    -->
 <!-- ======================================================================= -->
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/hero-fallback.png" />
   <source media="(max-width: 768px)" srcset="./assets/mobile/hero.svg" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/hero-fallback.png" />
   <img src="./assets/hero.svg" width="100%" alt="SltyNX Hero Banner — sleep &gt; code &gt; repeat (Sleeping Core)" />
 </picture>
 
@@ -15,8 +15,8 @@
 <!-- 2. DOT-MATRIX NAME SIMULATOR                                            -->
 <!-- ======================================================================= -->
 <picture>
-  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/sltynx-logo.svg" />
   <source media="(max-width: 768px)" srcset="./assets/mobile/dotmatrix-name.svg" />
+  <source media="(prefers-reduced-motion: reduce)" srcset="./assets/sltynx-logo.svg" />
   <img src="./assets/dotmatrix-name.svg" width="100%" alt="SLYTNX Dot-Matrix Name Simulator" />
 </picture>
 
