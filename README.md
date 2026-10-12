@@ -24,18 +24,18 @@
 
 ## Profile Introduction
 
-<img src="./assets/profile-avatar.png" width="88" height="88" align="right" alt="SltyNX sleepy mascot avatar" />
+<img src="./assets/profile-avatar.png" width="56" height="56" align="right" alt="SltyNX sleepy mascot avatar" />
 
 **Name:** SltyNX  
 **Bio:** `Sleeping Core`
 
-> Just a guy who sleeps a lot, codes a little, and dreams of building something cool.
-
-> Currently a noob developer. Learning as I go, breaking things occasionally, and trying to understand how everything works.
+<br clear="both" />
 
 <div align="center">
 
-<br />
+<img src="./assets/profile-intro.svg" width="100%" alt="Just a guy who sleeps a lot, codes a little, and dreams of building something cool. Currently a noob developer. Learning as I go, breaking things occasionally, and trying to understand how everything works." />
+
+<br /><br />
 
 <!-- ======================================================================= -->
 <!-- 3. TELEGRAM CONTACT BUTTON                                              -->

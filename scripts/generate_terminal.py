@@ -17,6 +17,87 @@ import pathlib
 import config as C
 
 
+def build_profile_intro() -> str:
+    """
+    Builds assets/profile-intro.svg (880x190) — Animated Terminal for Profile Introduction:
+    Types out:
+      $ cat profile_intro.txt
+      > Just a guy who sleeps a lot, codes a little, and dreams of building something cool.
+      > Currently a noob developer. Learning as I go, breaking things occasionally,
+        and trying to understand how everything works.
+    """
+    w, h = 880, 190
+
+    intro_lines = [
+        ("cmd", "$ cat profile_intro.txt", 64, 4, 14),
+        ("pri", "> Just a guy who sleeps a lot, codes a little, and dreams of building something cool.", 98, 18, 42),
+        ("sec", "> Currently a noob developer. Learning as I go, breaking things occasionally,", 130, 46, 68),
+        ("sec", "  and trying to understand how everything works.", 154, 68, 82),
+    ]
+
+    clips: list[str] = []
+    texts: list[str] = []
+    css_rules: list[str] = []
+
+    for idx, (kind, txt, y, t0, t1) in enumerate(intro_lines):
+        col = C.TEXT_PRIMARY if kind in ("cmd", "pri") else C.TEXT_SECONDARY
+        clips.append(
+            f'<clipPath id="piClip{idx}">'
+            f'<rect x="24" y="{y - 18}" width="832" height="26" class="piline{idx}"/>'
+            f'</clipPath>'
+        )
+        texts.append(
+            f'<text x="28" y="{y}" clip-path="url(#piClip{idx})" class="mono" font-size="13" fill="{col}" xml:space="preserve">{escape(txt)}</text>'
+        )
+        css_rules.append(
+            f".piline{idx} {{ animation: piType{idx} 12s steps(55, end) infinite; }}\n"
+            f"    @keyframes piType{idx} {{\n"
+            f"      0%, {t0}% {{ width: 0px; }}\n"
+            f"      {t1}%, 94% {{ width: 832px; }}\n"
+            f"      98%, 100% {{ width: 0px; }}\n"
+            f"    }}"
+        )
+
+    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Profile Introduction Terminal: Just a guy who sleeps a lot, codes a little, and dreams of building something cool. Currently a noob developer. Learning as I go, breaking things occasionally, and trying to understand how everything works.">
+  <title>Profile Introduction — SltyNX (Sleeping Core)</title>
+  <defs>
+    {"".join(clips)}
+  </defs>
+  <style>
+    .mono {{ font-family: {C.FONT_MONO}; }}
+    .sans {{ font-family: {C.FONT_SANS}; }}
+    {chr(10).join(css_rules)}
+    .pi-cur {{ animation: piBlink 1s steps(2, start) infinite; }}
+    @keyframes piBlink {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0; }} }}
+    @media (prefers-reduced-motion: reduce) {{
+      .piline0, .piline1, .piline2, .piline3 {{ animation: none !important; width: 832px !important; }}
+      .pi-cur {{ animation: none !important; opacity: 1 !important; }}
+    }}
+  </style>
+
+  <!-- Outer Terminal Card Frame -->
+  <rect x="0" y="0" width="{w}" height="{h}" rx="8" fill="{C.BG_PRIMARY}"/>
+  <rect x="1" y="1" width="{w - 2}" height="{h - 2}" rx="7" fill="none" stroke="{C.BORDER}" stroke-width="1"/>
+
+  <!-- Top Terminal Header Strip -->
+  <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
+  <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
+  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
+  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@sleeping-core: ~/profile (cat profile_intro.txt)</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">bio: Sleeping Core</text>
+
+  <!-- Animated Terminal Typing Lines -->
+  {"".join(texts)}
+
+  <!-- Bottom Prompt & Blinking Cursor -->
+  <text x="28" y="178" class="mono" font-size="13" fill="{C.TEXT_MUTED}">$ </text>
+  <rect x="44" y="166" width="8" height="14" fill="{C.TEXT_PRIMARY}" class="pi-cur"/>
+</svg>
+'''
+
+
 def build_current_project() -> str:
     """
     Builds assets/current-project.svg (880x185) — Section 9:
@@ -963,6 +1044,7 @@ def build_funny_quote() -> str:
 def generate_all() -> dict[str, pathlib.Path]:
     C.ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     outputs = {
+        "profile-intro.svg": build_profile_intro(),
         "current-project.svg": build_current_project(),
         "skills-learning.svg": build_skills_learning(),
         "terminal-session.svg": build_terminal_session(),

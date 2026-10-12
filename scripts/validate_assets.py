@@ -27,6 +27,7 @@ REQUIRED_ASSETS = [
     "sltynx-logo.svg",
     "dotmatrix-name.svg",
     "profile-avatar.png",
+    "profile-intro.svg",
     "telegram-button.svg",
     "current-project.svg",
     "skills-learning.svg",
