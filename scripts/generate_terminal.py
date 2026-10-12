@@ -273,7 +273,7 @@ def build_skills_learning() -> str:
   <!-- Top Header Strip -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="34" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="36" x2="{w - 1}" y2="36" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="24" y="23" class="mono" font-size="13" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.SKILLS_HEADING)}</text>
+  <text x="24" y="23" class="mono" font-size="13" font-weight="700" fill="{C.TEXT_PRIMARY}">// {escape(C.SKILLS_HEADING)}</text>
 
   <!-- Beginner — Learning in Progress Badge -->
   <rect x="614" y="6" width="244" height="22" rx="4" fill="{C.BG_PRIMARY}" stroke="{C.BORDER}" stroke-width="1"/>
@@ -376,10 +376,8 @@ def build_terminal_session() -> str:
   <!-- Top Terminal Bar -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/projects (scene 01 // running out of ideas)</text>
+  <text x="24" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// Development Log &amp; Story</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">scene 01 // running out of ideas</text>
 
   <!-- =================================================================== -->
   <!-- SCENE A (LEFT): Terminal Typing Sequence                            -->
@@ -542,10 +540,8 @@ def build_ai_assistance() -> str:
   <!-- Top Terminal Header -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/projects (scene 02 // asking AI for a hint)</text>
+  <text x="24" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// Development Log &amp; Story</text>
+  <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">scene 02 // asking AI for a hint</text>
 
   <!-- =================================================================== -->
   <!-- SCENE C (LEFT TOP): Three AI Reference Nodes & Dot-Matrix Popups    -->
@@ -725,10 +721,7 @@ def build_error_repair() -> str:
   <!-- Top Terminal Header -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="20" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="34" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="48" cy="17.5" r="4" fill="{C.TEXT_DIM}"/>
-  <text x="68" y="22" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">sltynx@desk: ~/debug-simulation (error &amp; repair demo)</text>
+  <text x="24" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// Simulated Error &amp; Repair</text>
   <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="10.5" fill="{C.TEXT_MUTED}">[simulated sequence]</text>
 
   <!-- =================================================================== -->
@@ -892,8 +885,8 @@ def build_knowledge_panel() -> str:
   <!-- Header Strip -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="24" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.KNOWLEDGE_TITLE)}</text>
-  <text x="150" y="22" class="sans" font-size="12" fill="{C.TEXT_SECONDARY}">&#8212; {escape(C.KNOWLEDGE_SUBTITLE)}</text>
+  <text x="24" y="22" class="mono" font-size="12.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// {escape(C.KNOWLEDGE_TITLE)}</text>
+  <text x="164" y="22" class="sans" font-size="12" fill="{C.TEXT_SECONDARY}">&#8212; {escape(C.KNOWLEDGE_SUBTITLE)}</text>
 
   <!-- Left Explorer Tree -->
   <text x="28" y="56" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">~/knowledge-base/</text>
@@ -1041,6 +1034,27 @@ def build_funny_quote() -> str:
 '''
 
 
+def build_unified_terminal() -> str:
+    """
+    Combines Skills / Tools, Development Log & Story (Scenes A-D),
+    Simulated Error & Repair, Knowledge Base, and Trying to Understand
+    one after another inside a single continuous 880px Desktop terminal window.
+    """
+    return C.combine_into_single_terminal(
+        [
+            build_skills_learning(),
+            build_terminal_session(),
+            build_ai_assistance(),
+            build_error_repair(),
+            build_knowledge_panel(),
+            build_funny_quote(),
+        ],
+        w=880,
+        header_title="sltynx@sleeping-core: ~/session &#8212; bash",
+        header_right="skills &#8226; dev-log &#8226; error-repair &#8226; knowledge &#8226; understand",
+    )
+
+
 def generate_all() -> dict[str, pathlib.Path]:
     C.ASSETS_DIR.mkdir(parents=True, exist_ok=True)
     outputs = {
@@ -1052,6 +1066,7 @@ def generate_all() -> dict[str, pathlib.Path]:
         "error-repair.svg": build_error_repair(),
         "knowledge-panel.svg": build_knowledge_panel(),
         "funny-quote.svg": build_funny_quote(),
+        "unified-terminal.svg": build_unified_terminal(),
     }
     written: dict[str, pathlib.Path] = {}
     for name, content in outputs.items():

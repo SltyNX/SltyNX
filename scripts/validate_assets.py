@@ -36,6 +36,7 @@ REQUIRED_ASSETS = [
     "error-repair.svg",
     "knowledge-panel.svg",
     "funny-quote.svg",
+    "unified-terminal.svg",
     "footer.svg",
     "mobile/hero.svg",
     "mobile/dotmatrix-name.svg",
@@ -47,6 +48,7 @@ REQUIRED_ASSETS = [
     "mobile/error-repair.svg",
     "mobile/knowledge-panel.svg",
     "mobile/funny-quote.svg",
+    "mobile/unified-terminal.svg",
     "mobile/footer.svg",
 ]
 

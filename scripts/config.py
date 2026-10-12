@@ -392,3 +392,127 @@ def get_asset_base64(filename: str) -> str:
     if not path.exists():
         return ""
     return base64.b64encode(path.read_bytes()).decode("ascii")
+
+
+def combine_into_single_terminal(sections: list[str], w: int, header_title: str, header_right: str = "") -> str:
+    """
+    Combines multiple section SVGs (Skills / Tools, Development Log & Story,
+    Simulated Error & Repair, Knowledge Base, Trying to Understand) one after another
+    into a single continuous terminal SVG with isolated CSS/IDs and no inner double-borders.
+    """
+    import re
+
+    top_bar_h = 36
+    y_offset = top_bar_h
+    all_defs: list[str] = []
+    all_styles: list[str] = []
+    section_groups: list[str] = []
+
+    for idx, raw_svg in enumerate(sections):
+        prefix = f"u{idx}_"
+        vb_match = re.search(r'viewBox="0 0 (\d+) (\d+)"', raw_svg)
+        if not vb_match:
+            continue
+        sec_w = int(vb_match.group(1))
+        sec_h = int(vb_match.group(2))
+
+        # 1. Namespace IDs and url(#...)
+        s = re.sub(r'\bid="([^"]+)"', rf'id="{prefix}\1"', raw_svg)
+        s = re.sub(r'url\(#([^)]+)\)', rf'url(#{prefix}\1)', s)
+
+        # 2. Namespace @keyframes and animation names
+        kf_names = set(re.findall(r'@keyframes\s+([A-Za-z0-9_-]+)', s))
+        for kfn in sorted(kf_names, key=len, reverse=True):
+            s = re.sub(rf'\b{re.escape(kfn)}\b', f"{prefix}{kfn}", s)
+
+        # 3. Namespace CSS classes inside <style> and class="..." (except mono/sans)
+        style_match = re.search(r'<style>(.*?)</style>', s, re.S)
+        if style_match:
+            style_content = style_match.group(1)
+            cls_names = set(re.findall(r'\.([A-Za-z_][A-Za-z0-9_-]*)', style_content)) - {"mono", "sans"}
+            for cn in sorted(cls_names, key=len, reverse=True):
+                style_content = re.sub(rf'\.{re.escape(cn)}\b', f".{prefix}{cn}", style_content)
+                s = re.sub(
+                    r'\bclass="([^"]*)"',
+                    lambda m, c=cn, p=prefix: f'class="{re.sub(rf"(?<![A-Za-z0-9_-]){re.escape(c)}(?![A-Za-z0-9_-])", p + c, m.group(1))}"',
+                    s,
+                )
+            style_content = re.sub(r'\.mono\s*\{[^}]*\}', '', style_content)
+            style_content = re.sub(r'\.sans\s*\{[^}]*\}', '', style_content)
+            all_styles.append(style_content.strip())
+
+        for dm in re.finditer(r'<defs>(.*?)</defs>', s, flags=re.S):
+            if dm.group(1).strip():
+                all_defs.append(dm.group(1).strip())
+
+        # 4. Extract inner content between <svg ...> and </svg>
+        inner_start = s.find(">") + 1
+        inner_end = s.rfind("</svg>")
+        inner = s[inner_start:inner_end]
+        inner = re.sub(r'<title>.*?</title>', '', inner, flags=re.S)
+        inner = re.sub(r'<defs>.*?</defs>', '', inner, flags=re.S)
+        inner = re.sub(r'<style>.*?</style>', '', inner, flags=re.S)
+
+        # 5. Strip outer rounded border rects so sections stack seamlessly inside the single terminal
+        inner = re.sub(
+            rf'<rect x="0" y="0" width="{sec_w}" height="{sec_h}" rx="\d+" fill="{BG_PRIMARY}"/>',
+            f'<rect x="0" y="0" width="{sec_w}" height="{sec_h}" fill="{BG_PRIMARY}"/>',
+            inner,
+        )
+        inner = re.sub(
+            rf'<rect x="1" y="1" width="{sec_w - 2}" height="{sec_h - 2}"[^>]*/>',
+            f'<line x1="1" y1="0" x2="{sec_w - 1}" y2="0" stroke="{BORDER}" stroke-width="1.2"/>',
+            inner,
+        )
+        # Make section header strip flush (rx="0") inside the unified terminal
+        inner = re.sub(
+            r'(<rect x="1\.5" y="1\.5" width="\d+" height="\d+") rx="\d+"',
+            r'\1 rx="0"',
+            inner,
+        )
+
+        section_groups.append(
+            f'  <g transform="translate(0, {y_offset})">\n'
+            f'{inner.strip()}\n'
+            f'  </g>'
+        )
+        y_offset += sec_h
+
+    total_h = y_offset
+    right_tag = (
+        f'<text x="{w - 20}" y="23" text-anchor="end" class="mono" font-size="11.5" fill="{TEXT_MUTED}">{header_right}</text>'
+        if header_right
+        else ""
+    )
+
+    return f'''<svg {SVG_NS} viewBox="0 0 {w} {total_h}" width="{w}" height="{total_h}" role="img" aria-label="SltyNX Unified Terminal — Skills, Development Log, Simulated Error and Repair, Knowledge Base, and Trying to Understand">
+  <title>SltyNX — Unified Terminal Session</title>
+  <defs>
+    {chr(10).join(all_defs)}
+  </defs>
+  <style>
+    .mono {{ font-family: {FONT_MONO}; }}
+    .sans {{ font-family: {FONT_SANS}; }}
+    {chr(10).join(all_styles)}
+  </style>
+
+  <!-- Single Master Terminal Background -->
+  <rect x="0" y="0" width="{w}" height="{total_h}" rx="8" fill="{BG_PRIMARY}"/>
+
+  <!-- Master Terminal Titlebar -->
+  <rect x="1.5" y="1.5" width="{w - 3}" height="{top_bar_h - 2}" rx="6" fill="{BG_SECONDARY}"/>
+  <line x1="1" y1="{top_bar_h}" x2="{w - 1}" y2="{top_bar_h}" stroke="{BORDER}" stroke-width="1"/>
+  <circle cx="20" cy="18.5" r="4.2" fill="{TEXT_DIM}"/>
+  <circle cx="34" cy="18.5" r="4.2" fill="{TEXT_DIM}"/>
+  <circle cx="48" cy="18.5" r="4.2" fill="{TEXT_DIM}"/>
+  <text x="66" y="23" class="mono" font-size="12.5" font-weight="700" fill="{TEXT_PRIMARY}">{header_title}</text>
+  {right_tag}
+
+  <!-- Seamless Stacked Terminal Sections -->
+{chr(10).join(section_groups)}
+
+  <!-- Single Master Outer Terminal Border -->
+  <rect x="1" y="1" width="{w - 2}" height="{total_h - 2}" rx="7" fill="none" stroke="{BORDER}" stroke-width="1.2"/>
+</svg>
+'''
+

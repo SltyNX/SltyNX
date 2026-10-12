@@ -57,6 +57,54 @@
 
 ---
 
+<!-- ======================================================================= -->
+<!-- 4. UNIFIED TERMINAL: SKILLS / TOOLS -> DEV LOG & STORY ->               -->
+<!--    SIMULATED ERROR & REPAIR -> KNOWLEDGE BASE -> TRYING TO UNDERSTAND   -->
+<!-- ======================================================================= -->
+<div align="center">
+  <picture>
+    <source media="(max-width: 768px)" srcset="./assets/mobile/unified-terminal.svg" />
+    <img src="./assets/unified-terminal.svg" width="100%" alt="Skills / Tools (Beginner — Learning in Progress), Development Log & Story, Simulated Error & Repair, Knowledge Base, and Trying to Understand: When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real." />
+  </picture>
+</div>
+
+<details>
+<summary><sub>View terminal details &amp; Knowledge Base links</sub></summary>
+
+<br />
+
+- [`learning-notes/`](./knowledge-base/learning-notes) — Notes on Android input views, Python scripting, and Git basics.
+- [`experiments/`](./knowledge-base/experiments) — Small layout tests and terminal SVG sandboxes.
+- [`project-references/`](./knowledge-base/project-references) — Gnosis Keyboard data structures and references.
+- [`ideas/`](./knowledge-base/ideas) — Scratchpad for future tools once I catch up on sleep.
+
+```text
+// Skills / Tools (Beginner — Learning in Progress)
+Not skilled yet, but I'm building it step by step.
+
+// Development Log & Story
+$ start-project
+> opening the editor...
+> thinking of an idea...
+> no ideas found.
+> searching for motivation...
+[mascot]: ...what now?
+[hint-nodes]: Claude — Sonnet | Gemini | ChatGPT
+> hint received -> trying to understand... -> implementing solution...
+
+// Simulated Error & Repair
+! error: something went wrong
+> diagnosis: developer confusion -> requesting assistance... -> applying fix...
+✓ build successful (in this simulation)
+
+// Trying to Understand
+"When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real."
+```
+
+</details>
+
+---
+
 ## Current Projects
 
 <div align="center">
@@ -69,109 +117,6 @@
 - **Project:** Gnosis Keyboard (`In Progress`)
 - **Description:** A custom Android keyboard focused on control, customization, and a better typing experience.
 - **Repository:** `private currently`
-
----
-
-## Skills / Tools
-
-**Status:** `Beginner — Learning in Progress`
-
-<div align="center">
-  <picture>
-    <source media="(max-width: 768px)" srcset="./assets/mobile/skills-learning.svg" />
-    <img src="./assets/skills-learning.svg" width="100%" alt="Skills and Tools — Beginner, Learning in Progress" />
-  </picture>
-</div>
-
-> Not skilled yet, but I'm building it step by step.
-
-`Android (Exploring)` • `Kotlin / Java Basics (Learning)` • `Python Scripting (Learning)` • `Git & GitHub (Using)` • `JSON & Configs (Using)` • `Markdown & SVG (Exploring)`
-
----
-
-## Development Log & Story
-
-### Terminal Session — Running Out of Ideas
-
-<div align="center">
-  <picture>
-    <source media="(max-width: 768px)" srcset="./assets/mobile/terminal-session.svg" />
-    <img src="./assets/terminal-session.svg" width="100%" alt="Terminal Session Scene A & B: Starting work, running out of ideas, and the sleepy mascot asking '...what now?'" />
-  </picture>
-  <br /><br />
-  <picture>
-    <source media="(max-width: 768px)" srcset="./assets/mobile/ai-assistance.svg" />
-    <img src="./assets/ai-assistance.svg" width="100%" alt="Terminal Session Scene C & D: Asking Claude — Sonnet, Gemini, and ChatGPT for a hint and implementing the solution" />
-  </picture>
-</div>
-
-<details>
-<summary><sub>View terminal transcript (text fallback)</sub></summary>
-
-```text
-$ start-project
-> opening the editor...
-> thinking of an idea...
-> no ideas found.
-> searching for motivation...
-[mascot]: ...what now?
-
-[hint-nodes]: Claude — Sonnet | Gemini | ChatGPT
-[popup]: asking for a hint... -> idea detected? -> trying again...
-
-> hint received
-> trying to understand...
-> implementing solution...
-```
-
-</details>
-
-### Simulated Error & Repair — The AI Construction Truck
-
-<div align="center">
-  <picture>
-    <source media="(max-width: 768px)" srcset="./assets/mobile/error-repair.svg" />
-    <img src="./assets/error-repair.svg" width="100%" alt="Simulated Error Repair: AI Construction Truck fixing developer confusion" />
-  </picture>
-</div>
-
-<details>
-<summary><sub>View simulated error log (text fallback)</sub></summary>
-
-```text
-! error: something went wrong
-> diagnosis: developer confusion
-> requesting assistance...
-> applying fix...
-✓ build successful (in this simulation)
-```
-
-</details>
-
-### Knowledge Base
-
-*Notes, experiments, and things I'm learning.*
-
-<div align="center">
-  <picture>
-    <source media="(max-width: 768px)" srcset="./assets/mobile/knowledge-panel.svg" />
-    <img src="./assets/knowledge-panel.svg" width="100%" alt="Knowledge Base directory explorer and simulated extraction" />
-  </picture>
-</div>
-
-- [`learning-notes/`](./knowledge-base/learning-notes) — Notes on Android input views, Python scripting, and Git basics.
-- [`experiments/`](./knowledge-base/experiments) — Small layout tests and terminal SVG sandboxes.
-- [`project-references/`](./knowledge-base/project-references) — Gnosis Keyboard data structures and references.
-- [`ideas/`](./knowledge-base/ideas) — Scratchpad for future tools once I catch up on sleep.
-
-### Trying to Understand
-
-<div align="center">
-  <picture>
-    <source media="(max-width: 768px)" srcset="./assets/mobile/funny-quote.svg" />
-    <img src="./assets/funny-quote.svg" width="100%" alt="Confused mascot saying: When I say Ehh, ehhh, ehhhh... like for three time, don't give up on me bro, I'm trying to understand it for real." />
-  </picture>
-</div>
 
 ---
 

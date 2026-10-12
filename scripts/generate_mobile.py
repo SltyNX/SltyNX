@@ -579,7 +579,7 @@ def build_skills_learning() -> str:
   <!-- Top Header Strip -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="36" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="38" x2="{w - 1}" y2="38" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="16" y="24" class="mono" font-size="14" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.SKILLS_HEADING)}</text>
+  <text x="16" y="24" class="mono" font-size="14" font-weight="700" fill="{C.TEXT_PRIMARY}">// {escape(C.SKILLS_HEADING)}</text>
   <text x="{w - 16}" y="24" text-anchor="end" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">status: beginner</text>
 
   <!-- Beginner — Learning in Progress Full-Width Pill -->
@@ -656,10 +656,8 @@ def build_terminal_session() -> str:
 
   <rect x="1.5" y="1.5" width="{w - 3}" height="34" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="36" x2="{w - 1}" y2="36" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="18" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="32" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="46" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <text x="62" y="23" class="mono" font-size="12.5" fill="{C.TEXT_SECONDARY}">scene 01 // running out of ideas</text>
+  <text x="16" y="23" class="mono" font-size="13" font-weight="700" fill="{C.TEXT_PRIMARY}">// Development Log &amp; Story</text>
+  <text x="{w - 16}" y="23" text-anchor="end" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">scene 01</text>
 
   {"".join(texts)}
 
@@ -758,10 +756,8 @@ def build_ai_assistance() -> str:
 
   <rect x="1.5" y="1.5" width="{w - 3}" height="34" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="36" x2="{w - 1}" y2="36" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="18" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="32" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="46" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <text x="62" y="23" class="mono" font-size="12.5" fill="{C.TEXT_SECONDARY}">scene 02 // asking AI for a hint</text>
+  <text x="16" y="23" class="mono" font-size="13" font-weight="700" fill="{C.TEXT_PRIMARY}">// Development Log &amp; Story</text>
+  <text x="{w - 16}" y="23" text-anchor="end" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">scene 02 // AI hint</text>
 
   <!-- 3 Stacked Full-Width AI Service Cards -->
   {"".join(rows_svg)}
@@ -803,8 +799,8 @@ def build_error_repair() -> str:
     Native 380px width stacked error terminal + AI Construction Truck lane.
     """
     w, h = 380, 420
-    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Simulated Error Animation — The AI Construction Truck">
-  <title>Error Animation — The AI Construction Truck (Mobile)</title>
+    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Simulated Error &amp; Repair">
+  <title>Simulated Error &amp; Repair (Mobile)</title>
   <defs>
     <clipPath id="mTruckClip">
       <rect x="16" y="236" width="348" height="168" rx="6"/>
@@ -852,10 +848,8 @@ def build_error_repair() -> str:
 
   <rect x="1.5" y="1.5" width="{w - 3}" height="34" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="36" x2="{w - 1}" y2="36" stroke="{C.BORDER}" stroke-width="1"/>
-  <circle cx="18" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="32" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <circle cx="46" cy="18.5" r="4" fill="{C.TEXT_DIM}"/>
-  <text x="62" y="23" class="mono" font-size="12.5" fill="{C.TEXT_SECONDARY}">debug-sim // error &amp; repair</text>
+  <text x="16" y="23" class="mono" font-size="13.5" font-weight="700" fill="{C.TEXT_PRIMARY}">// Simulated Error &amp; Repair</text>
+  <text x="{w - 16}" y="23" text-anchor="end" class="mono" font-size="11.5" fill="{C.TEXT_SECONDARY}">debug-sim</text>
 
   <text x="20" y="66" class="mono err-line" font-size="14.5" font-weight="700" fill="{C.TERM_ERROR}">! error: something went wrong</text>
   <text x="20" y="94" class="mono err-line" font-size="14" fill="{C.TEXT_SECONDARY}">&gt; diagnosis: developer confusion</text>
@@ -956,7 +950,7 @@ def build_knowledge_panel() -> str:
 
   <rect x="1.5" y="1.5" width="{w - 3}" height="34" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="36" x2="{w - 1}" y2="36" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="16" y="23" class="mono" font-size="14" font-weight="700" fill="{C.TEXT_PRIMARY}">{escape(C.KNOWLEDGE_TITLE)}</text>
+  <text x="16" y="23" class="mono" font-size="14" font-weight="700" fill="{C.TEXT_PRIMARY}">// {escape(C.KNOWLEDGE_TITLE)}</text>
   <text x="{w - 16}" y="23" text-anchor="end" class="mono" font-size="12" fill="{C.TEXT_MUTED}">~/knowledge-base/</text>
 
   {"".join(dir_cards)}
@@ -1081,6 +1075,27 @@ def build_footer() -> str:
 '''
 
 
+def build_unified_terminal() -> str:
+    """
+    Combines Skills / Tools, Development Log & Story (Scenes 1 & 2),
+    Simulated Error & Repair, Knowledge Base, and Trying to Understand
+    one after another inside a single mobile terminal (380px wide).
+    """
+    return C.combine_into_single_terminal(
+        [
+            build_skills_learning(),
+            build_terminal_session(),
+            build_ai_assistance(),
+            build_error_repair(),
+            build_knowledge_panel(),
+            build_funny_quote(),
+        ],
+        w=380,
+        header_title="sltynx@sleeping-core: ~/workspace",
+        header_right="[unified]",
+    )
+
+
 def generate_all() -> dict[str, pathlib.Path]:
     mob_dir = C.ASSETS_DIR / "mobile"
     mob_dir.mkdir(parents=True, exist_ok=True)
@@ -1095,6 +1110,7 @@ def generate_all() -> dict[str, pathlib.Path]:
         "mobile/error-repair.svg": build_error_repair(),
         "mobile/knowledge-panel.svg": build_knowledge_panel(),
         "mobile/funny-quote.svg": build_funny_quote(),
+        "mobile/unified-terminal.svg": build_unified_terminal(),
         "mobile/footer.svg": build_footer(),
     }
     written: dict[str, pathlib.Path] = {}
