@@ -163,11 +163,12 @@ KNOWLEDGE_EXTRACTION_LINES = [
 ]
 
 # ---------------------------------------------------------------------------
-# 8. Funny Quote — The Three Hesitations (Section 14)
+# 8. Funny Quote — Trying to Understand (Section 14)
 # ---------------------------------------------------------------------------
+FUNNY_QUOTE_TITLE = "Trying to Understand"
 FUNNY_QUOTE_TEXT = (
-    '"Ehh, ehhh, ehhhh... don\'t give up on me bro, '
-    'I\'m trying to understand it for real."'
+    '"When I say Ehh, ehhh, ehhhh... like for the third time, '
+    'don\'t give up on me bro, I\'m trying to understand it for real."'
 )
 FUNNY_QUOTE_CAPTION = "// internal monologue while reading documentation at 3 AM"
 

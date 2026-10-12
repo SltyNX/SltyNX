@@ -822,11 +822,11 @@ def build_knowledge_panel() -> str:
 def build_funny_quote() -> str:
     """
     Builds assets/funny-quote.svg (880x230) — Section 14:
-    Funny Quote — The Three Hesitations.
+    Trying to Understand.
     Uses the confused mascot from 31595634885785270.jpg (confused-mascot.jpg),
     adds 2-3 hand-drawn question marks with a subtle pop, tiny thoughtful head tilt,
     and restrained speech bubble displaying:
-    "Ehh, ehhh, ehhhh... don't give up on me bro, I'm trying to understand it for real."
+    "When I say Ehh, ehhh, ehhhh... like for the third time, don't give up on me bro, I'm trying to understand it for real."
     """
     w, h = 880, 230
     confused_b64 = C.get_asset_base64("confused-mascot.jpg")
@@ -838,8 +838,8 @@ def build_funny_quote() -> str:
             f'clip-path="url(#confusedClip)"/>'
         )
 
-    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Funny Quote: Ehh, ehhh, ehhhh... don't give up on me bro, I'm trying to understand it for real.">
-  <title>Funny Quote — The Three Hesitations</title>
+    return f'''<svg {C.SVG_NS} viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="Trying to Understand: When I say Ehh, ehhh, ehhhh... like for the third time, don't give up on me bro, I'm trying to understand it for real.">
+  <title>Trying to Understand</title>
   <defs>
     <clipPath id="confusedClip">
       <rect x="44" y="48" width="144" height="144" rx="8"/>
@@ -890,7 +890,7 @@ def build_funny_quote() -> str:
   <!-- Top Header Strip -->
   <rect x="1.5" y="1.5" width="{w - 3}" height="32" rx="6" fill="{C.BG_SECONDARY}"/>
   <line x1="1" y1="34" x2="{w - 1}" y2="34" stroke="{C.BORDER}" stroke-width="1"/>
-  <text x="24" y="22" class="mono" font-size="12" font-weight="700" fill="{C.TEXT_PRIMARY}">// The Three Hesitations</text>
+  <text x="24" y="22" class="mono" font-size="12" font-weight="700" fill="{C.TEXT_PRIMARY}">// Trying to Understand</text>
   <text x="{w - 24}" y="22" text-anchor="end" class="mono" font-size="11" fill="{C.TEXT_MUTED}">mood: confused_concentration.jpg</text>
 
   <!-- Left Side: Confused Mascot Reference + Restrained Hand-Drawn Question Marks -->
@@ -918,16 +918,16 @@ def build_funny_quote() -> str:
 
   <!-- Right Side: Restrained Speech Bubble with Pointer -->
   <g class="quote-fade">
-    <path d="M 244 72 H 844 A 8 8 0 0 1 852 80 V 176 A 8 8 0 0 1 844 184 H 244 A 8 8 0 0 1 236 176 V 132 L 218 122 L 236 112 V 80 A 8 8 0 0 1 244 72 Z"
+    <path d="M 244 66 H 844 A 8 8 0 0 1 852 74 V 182 A 8 8 0 0 1 844 190 H 244 A 8 8 0 0 1 236 182 V 132 L 218 122 L 236 112 V 74 A 8 8 0 0 1 244 66 Z"
           fill="{C.BG_SECONDARY}" stroke="{C.BORDER}" stroke-width="1.2"/>
 
-    <text x="264" y="114" class="sans" font-size="17" font-weight="600" fill="{C.TEXT_PRIMARY}">
-      &#8220;Ehh, ehhh, ehhhh... don&apos;t give up on me bro,
+    <text x="262" y="106" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_PRIMARY}">
+      &#8220;When I say Ehh, ehhh, ehhhh... like for the third time,
     </text>
-    <text x="264" y="142" class="sans" font-size="17" font-weight="600" fill="{C.TEXT_PRIMARY}">
-      I&apos;m trying to understand it for real.&#8221;
+    <text x="262" y="134" class="sans" font-size="15.5" font-weight="600" fill="{C.TEXT_PRIMARY}">
+      don&apos;t give up on me bro, I&apos;m trying to understand it for real.&#8221;
     </text>
-    <text x="264" y="168" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">
+    <text x="262" y="166" class="mono" font-size="11.5" fill="{C.TEXT_MUTED}">
       {escape(C.FUNNY_QUOTE_CAPTION)}
     </text>
   </g>

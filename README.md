@@ -80,7 +80,9 @@
 
 ---
 
-## Terminal Session — Running Out of Ideas
+## Development Log & Story
+
+### Terminal Session — Running Out of Ideas
 
 <div align="center">
   <img src="./assets/terminal-session.svg" width="100%" alt="Terminal Session Scene A & B: Starting work, running out of ideas, and the sleepy mascot asking '...what now?'" />
@@ -109,9 +111,7 @@ $ start-project
 
 </details>
 
----
-
-## Simulated Error & Repair — The AI Construction Truck
+### Simulated Error & Repair — The AI Construction Truck
 
 <div align="center">
   <img src="./assets/error-repair.svg" width="100%" alt="Simulated Error Repair: AI Construction Truck fixing developer confusion" />
@@ -130,9 +130,7 @@ $ start-project
 
 </details>
 
----
-
-## Knowledge Base
+### Knowledge Base
 
 *Notes, experiments, and things I'm learning.*
 
@@ -145,15 +143,13 @@ $ start-project
 - [`project-references/`](./knowledge-base/project-references) — Gnosis Keyboard data structures and references.
 - [`ideas/`](./knowledge-base/ideas) — Scratchpad for future tools once I catch up on sleep.
 
----
-
-## The Three Hesitations
+### Trying to Understand
 
 <div align="center">
-  <img src="./assets/funny-quote.svg" width="100%" alt="Confused mascot saying: Ehh, ehhh, ehhhh... don't give up on me bro, I'm trying to understand it for real." />
+  <img src="./assets/funny-quote.svg" width="100%" alt="Confused mascot saying: When I say Ehh, ehhh, ehhhh... like for the third time, don't give up on me bro, I'm trying to understand it for real." />
 </div>
 
-> "Ehh, ehhh, ehhhh... don't give up on me bro, I'm trying to understand it for real."
+> "When I say Ehh, ehhh, ehhhh... like for the third time, don't give up on me bro, I'm trying to understand it for real."
 
 ---
 
