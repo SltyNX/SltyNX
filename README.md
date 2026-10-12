@@ -60,7 +60,7 @@
 
 - **Project:** Gnosis Keyboard (`In Progress`)
 - **Description:** A custom Android keyboard focused on control, customization, and a better typing experience.
-- **Repository:** `private repo currently`
+- **Repository:** `private currently`
 
 ---
 
