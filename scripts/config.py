@@ -167,7 +167,7 @@ KNOWLEDGE_EXTRACTION_LINES = [
 # ---------------------------------------------------------------------------
 FUNNY_QUOTE_TITLE = "Trying to Understand"
 FUNNY_QUOTE_TEXT = (
-    '"When I say Ehh, ehhh, ehhhh... like for the third time, '
+    '"When I say Ehh, ehhh, ehhhh... like for the three time, '
     'don\'t give up on me bro, I\'m trying to understand it for real."'
 )
 FUNNY_QUOTE_CAPTION = "// internal monologue while reading documentation at 3 AM"
