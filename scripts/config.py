@@ -394,11 +394,75 @@ def get_asset_base64(filename: str) -> str:
     return base64.b64encode(path.read_bytes()).decode("ascii")
 
 
+def _render_terminal_break(w: int, y_offset: int, label_desktop: str, label_mobile: str, is_subscene: bool = False) -> tuple[str, int]:
+    """
+    Renders a styled CLI terminal break/divider strip between sections inside the unified terminal.
+    Returns (svg_group_str, break_height).
+    """
+    is_mobile = w <= 420
+    if is_subscene:
+        bh = 36 if is_mobile else 38
+        cy = bh / 2.0
+        ty = cy + 4.5
+        if is_mobile:
+            svg = (
+                f'  <g transform="translate(0, {y_offset})">\n'
+                f'    <rect x="1.5" y="0" width="{w - 3}" height="{bh}" fill="#040404"/>\n'
+                f'    <line x1="1" y1="0" x2="{w - 1}" y2="0" stroke="{BORDER}" stroke-width="1"/>\n'
+                f'    <line x1="16" y1="{cy:.1f}" x2="{w - 16}" y2="{cy:.1f}" stroke="{BORDER}" stroke-width="1" stroke-dasharray="4 3"/>\n'
+                f'    <rect x="64" y="{cy - 11:.1f}" width="252" height="22" rx="4" fill="{BG_SECONDARY}" stroke="{BORDER}" stroke-width="1"/>\n'
+                f'    <text x="{w / 2:.0f}" y="{ty:.1f}" text-anchor="middle" class="mono" font-size="11.5" fill="{TEXT_SECONDARY}">{label_mobile}</text>\n'
+                f'    <line x1="1" y1="{bh}" x2="{w - 1}" y2="{bh}" stroke="{BORDER}" stroke-width="1"/>\n'
+                f'  </g>'
+            )
+        else:
+            svg = (
+                f'  <g transform="translate(0, {y_offset})">\n'
+                f'    <rect x="1.5" y="0" width="{w - 3}" height="{bh}" fill="#040404"/>\n'
+                f'    <line x1="1" y1="0" x2="{w - 1}" y2="0" stroke="{BORDER}" stroke-width="1"/>\n'
+                f'    <line x1="24" y1="{cy:.1f}" x2="{w - 24}" y2="{cy:.1f}" stroke="{BORDER}" stroke-width="1" stroke-dasharray="5 4"/>\n'
+                f'    <rect x="270" y="{cy - 11:.1f}" width="340" height="22" rx="4" fill="{BG_SECONDARY}" stroke="{BORDER}" stroke-width="1"/>\n'
+                f'    <text x="{w / 2:.0f}" y="{ty:.1f}" text-anchor="middle" class="mono" font-size="11.5" fill="{TEXT_SECONDARY}">{label_desktop}</text>\n'
+                f'    <line x1="1" y1="{bh}" x2="{w - 1}" y2="{bh}" stroke="{BORDER}" stroke-width="1"/>\n'
+                f'  </g>'
+            )
+        return svg, bh
+
+    bh = 52 if is_mobile else 56
+    if is_mobile:
+        svg = (
+            f'  <g transform="translate(0, {y_offset})">\n'
+            f'    <rect x="1.5" y="0" width="{w - 3}" height="{bh}" fill="#040404"/>\n'
+            f'    <line x1="1" y1="0" x2="{w - 1}" y2="0" stroke="{BORDER}" stroke-width="1.2"/>\n'
+            f'    <rect x="16" y="10" width="{w - 32}" height="32" rx="5" fill="#0A0A0A" stroke="#262626" stroke-width="1" stroke-dasharray="4 3"/>\n'
+            f'    <text x="26" y="30" class="mono" font-size="12" fill="{TEXT_MUTED}">$ &#9472;&#9472;</text>\n'
+            f'    <rect x="64" y="14" width="252" height="24" rx="4" fill="{BG_PRIMARY}" stroke="{BORDER}" stroke-width="1.1"/>\n'
+            f'    <text x="{w / 2:.0f}" y="30" text-anchor="middle" class="mono" font-size="11.5" font-weight="700" fill="{TEXT_PRIMARY}">[ {label_mobile} ]</text>\n'
+            f'    <text x="{w - 26}" y="30" text-anchor="end" class="mono" font-size="12" fill="{TEXT_MUTED}">&#9472;&#9472;</text>\n'
+            f'    <line x1="1" y1="{bh}" x2="{w - 1}" y2="{bh}" stroke="{BORDER}" stroke-width="1.2"/>\n'
+            f'  </g>'
+        )
+    else:
+        svg = (
+            f'  <g transform="translate(0, {y_offset})">\n'
+            f'    <rect x="1.5" y="0" width="{w - 3}" height="{bh}" fill="#040404"/>\n'
+            f'    <line x1="1" y1="0" x2="{w - 1}" y2="0" stroke="{BORDER}" stroke-width="1.2"/>\n'
+            f'    <rect x="24" y="12" width="{w - 48}" height="32" rx="5" fill="#0A0A0A" stroke="#262626" stroke-width="1" stroke-dasharray="4 3"/>\n'
+            f'    <text x="40" y="32" class="mono" font-size="12" fill="{TEXT_MUTED}">$ &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</text>\n'
+            f'    <rect x="260" y="16" width="360" height="24" rx="4" fill="{BG_PRIMARY}" stroke="{BORDER}" stroke-width="1.1"/>\n'
+            f'    <text x="{w / 2:.0f}" y="32" text-anchor="middle" class="mono" font-size="11.5" font-weight="700" fill="{TEXT_PRIMARY}">[ {label_desktop} ]</text>\n'
+            f'    <text x="{w - 40}" y="32" text-anchor="end" class="mono" font-size="12" fill="{TEXT_MUTED}">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; [NEXT]</text>\n'
+            f'    <line x1="1" y1="{bh}" x2="{w - 1}" y2="{bh}" stroke="{BORDER}" stroke-width="1.2"/>\n'
+            f'  </g>'
+        )
+    return svg, bh
+
+
 def combine_into_single_terminal(sections: list[str], w: int, header_title: str, header_right: str = "") -> str:
     """
     Combines multiple section SVGs (Skills / Tools, Development Log & Story,
     Simulated Error & Repair, Knowledge Base, Trying to Understand) one after another
-    into a single continuous terminal SVG with isolated CSS/IDs and no inner double-borders.
+    into a single continuous terminal SVG with styled CLI terminal breaks between sections.
     """
     import re
 
@@ -408,7 +472,22 @@ def combine_into_single_terminal(sections: list[str], w: int, header_title: str,
     all_styles: list[str] = []
     section_groups: list[str] = []
 
+    # Break labels before sections 1..5
+    break_meta = {
+        1: ("02 // Development Log &amp; Story", "02 // Dev Log &amp; Story", False),
+        2: ("scene 02 // asking AI for a hint", "scene 02 // AI hint", True),
+        3: ("03 // Simulated Error &amp; Repair", "03 // Error &amp; Repair", False),
+        4: ("04 // Knowledge Base", "04 // Knowledge Base", False),
+        5: ("05 // Trying to Understand", "05 // Trying to Understand", False),
+    }
+
     for idx, raw_svg in enumerate(sections):
+        if idx in break_meta:
+            lbl_desk, lbl_mob, is_sub = break_meta[idx]
+            brk_svg, brk_h = _render_terminal_break(w, y_offset, lbl_desk, lbl_mob, is_subscene=is_sub)
+            section_groups.append(brk_svg)
+            y_offset += brk_h
+
         prefix = f"u{idx}_"
         vb_match = re.search(r'viewBox="0 0 (\d+) (\d+)"', raw_svg)
         if not vb_match:
@@ -420,10 +499,10 @@ def combine_into_single_terminal(sections: list[str], w: int, header_title: str,
         s = re.sub(r'\bid="([^"]+)"', rf'id="{prefix}\1"', raw_svg)
         s = re.sub(r'url\(#([^)]+)\)', rf'url(#{prefix}\1)', s)
 
-        # 2. Namespace @keyframes and animation names
+        # 2. Namespace @keyframes and animation names (avoid matching inside hyphenated class names)
         kf_names = set(re.findall(r'@keyframes\s+([A-Za-z0-9_-]+)', s))
         for kfn in sorted(kf_names, key=len, reverse=True):
-            s = re.sub(rf'\b{re.escape(kfn)}\b', f"{prefix}{kfn}", s)
+            s = re.sub(rf'(?<![A-Za-z0-9_-]){re.escape(kfn)}(?![A-Za-z0-9_-])', f"{prefix}{kfn}", s)
 
         # 3. Namespace CSS classes inside <style> and class="..." (except mono/sans)
         style_match = re.search(r'<style>(.*?)</style>', s, re.S)
@@ -431,7 +510,7 @@ def combine_into_single_terminal(sections: list[str], w: int, header_title: str,
             style_content = style_match.group(1)
             cls_names = set(re.findall(r'\.([A-Za-z_][A-Za-z0-9_-]*)', style_content)) - {"mono", "sans"}
             for cn in sorted(cls_names, key=len, reverse=True):
-                style_content = re.sub(rf'\.{re.escape(cn)}\b', f".{prefix}{cn}", style_content)
+                style_content = re.sub(rf'\.{re.escape(cn)}(?![A-Za-z0-9_-])', f".{prefix}{cn}", style_content)
                 s = re.sub(
                     r'\bclass="([^"]*)"',
                     lambda m, c=cn, p=prefix: f'class="{re.sub(rf"(?<![A-Za-z0-9_-]){re.escape(c)}(?![A-Za-z0-9_-])", p + c, m.group(1))}"',
@@ -508,7 +587,7 @@ def combine_into_single_terminal(sections: list[str], w: int, header_title: str,
   <text x="66" y="23" class="mono" font-size="12.5" font-weight="700" fill="{TEXT_PRIMARY}">{header_title}</text>
   {right_tag}
 
-  <!-- Seamless Stacked Terminal Sections -->
+  <!-- Seamless Stacked Terminal Sections with CLI Terminal Breaks -->
 {chr(10).join(section_groups)}
 
   <!-- Single Master Outer Terminal Border -->
